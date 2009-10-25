@@ -66,6 +66,11 @@ extern zend_module_entry cairo_module_entry;
 
 #include <cairo.h>
 
+#ifdef CAIRO_HAS_FT_FONT
+#include <ft2build.h>
+#include FT_FREETYPE_H
+#endif
+
 /* Cairo object stuff */
 typedef struct _stream_closure {
 	php_stream *stream;
@@ -140,6 +145,22 @@ PHP_MINIT_FUNCTION(cairo);
 PHP_MINFO_FUNCTION(cairo);
 PHP_MSHUTDOWN_FUNCTION(cairo);
 
+/* Globals */
+#ifdef CAIRO_HAS_FT_FONT
+ZEND_BEGIN_MODULE_GLOBALS(cairo)
+	/* Freetype library */
+	FT_Library ft_lib;
+ZEND_END_MODULE_GLOBALS(cairo)
+
+#ifdef ZTS
+# define CAIROG(v) TSRMG(cairo_globals_id, zend_cairo_globals *, v)
+#else
+# define CAIROG(v) (cairo_globals.v)
+#endif
+
+ZEND_EXTERN_MODULE_GLOBALS(cairo)
+#endif
+
 PHP_MINIT_FUNCTION(cairo_matrix);
 PHP_MINIT_FUNCTION(cairo_error);
 PHP_MINIT_FUNCTION(cairo_context);
@@ -154,6 +175,7 @@ PHP_MINIT_FUNCTION(cairo_image_surface);
 PHP_MINIT_FUNCTION(cairo_svg_surface);
 PHP_MINIT_FUNCTION(cairo_pdf_surface);
 PHP_MINIT_FUNCTION(cairo_ps_surface);
+PHP_MINIT_FUNCTION(cairo_ft_font);
 
 /* cairo functions */
 PHP_FUNCTION(cairo_version);
@@ -394,6 +416,9 @@ PHP_FUNCTION(cairo_font_face_get_type);
 #ifdef CAIRO_HAS_QUARTZ_FONT
 	PHP_FUNCTION(cairo_quartz_font_face_create_for_atsu_font_id);
 	PHP_FUNCTION(cairo_quartz_font_face_create_for_cgfont);
+#endif
+#ifdef CAIRO_HAS_FT_FONT
+	PHP_FUNCTION(cairo_ft_font_face_create);
 #endif
 
 /* SVG Surface Functiosn */
