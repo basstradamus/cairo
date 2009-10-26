@@ -115,7 +115,11 @@ PHP_FUNCTION(cairo_ft_font_face_create)
 	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
 		php_stream_from_zval(stream, &stream_zval);	
 	} else {
-		zend_error(E_WARNING, "CairoFtFontFace::__construct() expects parameter 1 to be a string or a stream resource");
+		zend_error(E_WARNING, "cairo_ft_font_face_create expects parameter 1 to be a string or a stream resource");
+		RETURN_NULL();
+	}
+
+	if(!stream) {
 		RETURN_NULL();
 	}
 
@@ -207,6 +211,11 @@ PHP_METHOD(CairoFtFontFace, __construct)
 		zend_error(E_WARNING, "CairoFtFontFace::__construct() expects parameter 1 to be a string or a stream resource");
 		RETURN_NULL();
 	}
+
+	if(!stream) {
+		RETURN_NULL();
+	}
+
 
 	if(php_stream_stat(stream, &ssbuf) != 0) {
 		zend_throw_exception(cairo_ce_cairoexception, "Cannot determine size of stream", 0 TSRMLS_CC);
