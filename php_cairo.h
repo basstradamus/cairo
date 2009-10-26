@@ -135,6 +135,12 @@ typedef struct _cairo_font_face_object {
 	cairo_font_face_t *font_face;
 } cairo_font_face_object;
 
+typedef struct _cairo_ft_font_face_object {
+	zend_object std;
+	cairo_font_face_t *font_face;
+	FT_Stream ft_stream;
+} cairo_ft_font_face_object;
+
 typedef struct _cairo_font_options_object {
 	zend_object std;
 	cairo_font_options_t *font_options;
@@ -474,6 +480,10 @@ extern zend_class_entry *cairo_ce_cairoftfontface;
 extern zend_object_value cairo_surface_object_new(zend_class_entry *ce TSRMLS_DC);
 extern cairo_status_t php_cairo_read_func(void *closure, const unsigned char *data, unsigned int length);
 extern cairo_status_t php_cairo_write_func(void *closure, const unsigned char *data, unsigned int length);
+#ifdef CAIRO_HAS_FT_FONT
+static unsigned long php_cairo_ft_read_func(FT_Stream stream, unsigned long offset, unsigned char* buffer, unsigned long count);
+extern void php_cairo_ft_close_stream(FT_Stream stream);
+#endif
 
 extern zend_object_value cairo_font_face_object_new(zend_class_entry *ce TSRMLS_DC);
 
