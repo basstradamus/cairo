@@ -120,7 +120,7 @@ PHP_FUNCTION(cairo_ft_font_face_create)
 	}
 
 	if(!stream) {
-		RETURN_NULL();
+		RETURN_FALSE;
 	}
 
 	if(php_stream_stat(stream, &ssbuf) != 0) {
@@ -184,20 +184,20 @@ PHP_METHOD(CairoFtFontFace, __construct)
 	FT_Stream ft_stream;
 	php_stream_statbuf ssbuf;
 
-	PHP_CAIRO_ERROR_HANDLING(FALSE)
+	PHP_CAIRO_ERROR_HANDLING(TRUE)
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l",
 				&stream_zval, &load_flags) == FAILURE)
 	{
-		PHP_CAIRO_RESTORE_ERRORS(FALSE)
+		PHP_CAIRO_RESTORE_ERRORS(TRUE)
 		return;
 	}
-	PHP_CAIRO_RESTORE_ERRORS(FALSE)
 	
 	ft_lib = &CAIROG(ft_lib);
 	if(*ft_lib == NULL) {
 		error = FT_Init_FreeType(ft_lib);
 		if(error) {
 			zend_throw_exception(cairo_ce_cairoexception, "Failed to initalise FreeType library", 0 TSRMLS_CC);
+			PHP_CAIRO_RESTORE_ERRORS(TRUE)
 			return;
 		}
 	}
@@ -208,17 +208,22 @@ PHP_METHOD(CairoFtFontFace, __construct)
 	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
 		php_stream_from_zval(stream, &stream_zval);	
 	} else {
-		zend_error(E_WARNING, "CairoFtFontFace::__construct() expects parameter 1 to be a string or a stream resource");
-		RETURN_NULL();
+		zend_throw_exception(cairo_ce_cairoexception, "CairoFtFontFace::__construct() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
+		PHP_CAIRO_RESTORE_ERRORS(TRUE)
+		return;
 	}
+	PHP_CAIRO_RESTORE_ERRORS(TRUE)
 
 	if(!stream) {
-		RETURN_NULL();
+		/* If there isn't a stream, the exception should already have been thrown 
+		   by php_stream_open_wrapper, so just bail */
+		return;
 	}
 
 
 	if(php_stream_stat(stream, &ssbuf) != 0) {
 		zend_throw_exception(cairo_ce_cairoexception, "Cannot determine size of stream", 0 TSRMLS_CC);
+		return;
 	}
 
 	closure = ecalloc(1, sizeof(stream_closure));
