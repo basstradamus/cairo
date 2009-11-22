@@ -50,6 +50,7 @@ static unsigned long php_cairo_ft_read_func(FT_Stream stream, unsigned long offs
 #endif
 
 	closure = (stream_closure *)stream->descriptor.pointer;
+	TSRMLS_C = closure->TSRMLS_C;
 	php_stream_seek(closure->stream, offset, SEEK_SET);
 	return php_stream_read(closure->stream, (char *)buffer, count);
 }
@@ -104,7 +105,7 @@ PHP_FUNCTION(cairo_ft_font_face_create)
 	if(*ft_lib == NULL) {
 		error = FT_Init_FreeType(ft_lib);
 		if(error) {
-			zend_throw_exception(cairo_ce_cairoexception, "Failed to initalise FreeType library", 0 TSRMLS_CC);
+			zend_error(E_WARNING, "Failed to initialize the Freetype library");
 			return;
 		}
 	}
@@ -116,7 +117,7 @@ PHP_FUNCTION(cairo_ft_font_face_create)
 		php_stream_from_zval(stream, &stream_zval);	
 	} else {
 		zend_error(E_WARNING, "cairo_ft_font_face_create expects parameter 1 to be a string or a stream resource");
-		RETURN_NULL();
+		return;
 	}
 
 	if(!stream) {
@@ -124,7 +125,8 @@ PHP_FUNCTION(cairo_ft_font_face_create)
 	}
 
 	if(php_stream_stat(stream, &ssbuf) != 0) {
-		zend_throw_exception(cairo_ce_cairoexception, "Cannot determine size of stream", 0 TSRMLS_CC);
+		zend_error(E_WARNING, "Cannot determine size of stream");
+		return;
 	}
 
 	closure = ecalloc(1, sizeof(stream_closure));
@@ -196,8 +198,8 @@ PHP_METHOD(CairoFtFontFace, __construct)
 	if(*ft_lib == NULL) {
 		error = FT_Init_FreeType(ft_lib);
 		if(error) {
-			zend_throw_exception(cairo_ce_cairoexception, "Failed to initalise FreeType library", 0 TSRMLS_CC);
 			PHP_CAIRO_RESTORE_ERRORS(TRUE)
+			zend_throw_exception(cairo_ce_cairoexception, "Failed to initalise FreeType library", 0 TSRMLS_CC);
 			return;
 		}
 	}
@@ -208,8 +210,8 @@ PHP_METHOD(CairoFtFontFace, __construct)
 	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
 		php_stream_from_zval(stream, &stream_zval);	
 	} else {
-		zend_throw_exception(cairo_ce_cairoexception, "CairoFtFontFace::__construct() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
 		PHP_CAIRO_RESTORE_ERRORS(TRUE)
+		zend_throw_exception(cairo_ce_cairoexception, "CairoFtFontFace::__construct() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
 		return;
 	}
 	PHP_CAIRO_RESTORE_ERRORS(TRUE)
