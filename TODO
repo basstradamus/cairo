@@ -1,3 +1,9 @@
+This is the image systems branch, to add support for other imaging APIs in PHP.
+
+* GD
+* GMagick
+* IMagick
+
 Surfaces to Finish:
     Win32 Surfaces — Microsoft Windows surface support
     Quartz Surfaces — Rendering to Quartz surfaces
