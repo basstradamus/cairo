@@ -50,7 +50,9 @@ static unsigned long php_cairo_ft_read_func(FT_Stream stream, unsigned long offs
 #endif
 
 	closure = (stream_closure *)stream->descriptor.pointer;
+#ifdef ZTS
 	TSRMLS_C = closure->TSRMLS_C;
+#endif
 	php_stream_seek(closure->stream, offset, SEEK_SET);
 	return php_stream_read(closure->stream, (char *)buffer, count);
 }
