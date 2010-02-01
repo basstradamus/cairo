@@ -29,10 +29,12 @@
 #include "php_cairo.h"
 #include "zend_exceptions.h"
 
+
 #ifdef CAIRO_HAS_FT_FONT
 #include <fontconfig/fontconfig.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include <cairo/cairo-ft.h>
 
 zend_class_entry *cairo_ce_cairoftfont;
 
@@ -67,7 +69,7 @@ void php_cairo_ft_close_stream(FT_Stream stream)
 	closure = (stream_closure *)stream->descriptor.pointer;
 	/* Don't close the stream unless we created it */
 	if(closure->owned_stream) {
-		php_stream_close((php_stream *)closure->stream);		
+		php_stream_close((php_stream *)closure->stream TSRMLS_CC);		
 		efree(closure->stream);
 	}
 	efree(closure);
@@ -150,16 +152,16 @@ PHP_FUNCTION(cairo_ft_font_face_create)
 	/* FIXME: hard coding open first face, will change to allow it to be selected */
 	error = FT_Open_Face(*ft_lib, &open_args, 0, &face);
 	if(error == FT_Err_Unknown_File_Format) { 
-		zend_trigger_error("CairoFtFontFace::__construct(): unknown file format" TSRMLS_CC);
+		zend_error(E_ERROR, "CairoFtFontFace::__construct(): unknown file format" TSRMLS_CC);
 		return;
 	} else if (error) {
-		zend_trigger_error("CairoFtFontFace::__construct(): An error occurred opening the file" TSRMLS_CC);
+		zend_error(E_ERROR, "CairoFtFontFace::__construct(): An error occurred opening the file" TSRMLS_CC);
 		return;
 	} 
 
 
 	object_init_ex(return_value, cairo_ce_cairoftfont);
-	font_face_object = (cairo_font_face_object *)zend_object_store_get_object(return_value TSRMLS_CC);	
+	font_face_object = (cairo_ft_font_face_object *)zend_object_store_get_object(return_value TSRMLS_CC);	
 	font_face_object->font_face = (cairo_font_face_t *)cairo_ft_font_face_create_for_ft_face(face, (int)load_flags);
 	font_face_object->ft_stream = ft_stream;
 	PHP_CAIRO_ERROR(cairo_font_face_status(font_face_object->font_face));
