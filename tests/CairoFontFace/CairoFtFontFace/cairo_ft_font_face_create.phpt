@@ -39,14 +39,14 @@ object(CairoFtFontFace)#1 (0) {
 object(CairoFtFontFace)#2 (0) {
 }
 
-Warning: cairo_ft_font_face_create() expects at least 1 parameter, 0 given in /home/michael/src/pecl-cairo-freetype/tests/CairoFontFace/CairoFtFontFace/cairo_ft_font_face_create.php on line 13
+Warning: cairo_ft_font_face_create() expects at least 1 parameter, 0 given in %s on line 13
 NULL
 
-Warning: cairo_ft_font_face_create(NotARealFont): failed to open stream: No such file or directory in /home/michael/src/pecl-cairo-freetype/tests/CairoFontFace/CairoFtFontFace/cairo_ft_font_face_create.php on line 17
+Warning: cairo_ft_font_face_create(NotARealFont): failed to open stream: No such file or directory in %s on line 17
 NULL
 
-Warning: cairo_ft_font_face_create expects parameter 1 to be a string or a stream resource in /home/michael/src/pecl-cairo-freetype/tests/CairoFontFace/CairoFtFontFace/cairo_ft_font_face_create.php on line 21
+Warning: cairo_ft_font_face_create expects parameter 1 to be a string or a stream resource in %s on line 21
 NULL
 
-Warning: cairo_ft_font_face_create(): An error occurred opening the file in /home/michael/src/pecl-cairo-freetype/tests/CairoFontFace/CairoFtFontFace/cairo_ft_font_face_create.php on line 25
+Warning: cairo_ft_font_face_create(): An error occurred opening the file in %s on line 25
 NULL
