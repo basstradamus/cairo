@@ -1136,10 +1136,12 @@ zend_module_entry cairo_module_entry = {
 ZEND_GET_MODULE(cairo)
 #endif
 
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 static PHP_GINIT_FUNCTION(cairo)
 {
 	cairo_globals->ft_lib = NULL;
 }
+#endif
 
 /* {{{ PHP_MINIT_FUNCTION */
 PHP_MINIT_FUNCTION(cairo)
