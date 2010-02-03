@@ -66,7 +66,7 @@ extern zend_module_entry cairo_module_entry;
 
 #include <cairo.h>
 
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #endif
@@ -152,7 +152,7 @@ PHP_MINFO_FUNCTION(cairo);
 PHP_MSHUTDOWN_FUNCTION(cairo);
 
 /* Globals */
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 ZEND_BEGIN_MODULE_GLOBALS(cairo)
 	/* Freetype library */
 	FT_Library ft_lib;
@@ -423,7 +423,7 @@ PHP_FUNCTION(cairo_font_face_get_type);
 	PHP_FUNCTION(cairo_quartz_font_face_create_for_atsu_font_id);
 	PHP_FUNCTION(cairo_quartz_font_face_create_for_cgfont);
 #endif
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	PHP_FUNCTION(cairo_ft_font_face_create);
 #endif
 
@@ -480,7 +480,7 @@ extern zend_class_entry *cairo_ce_cairoftfontface;
 extern zend_object_value cairo_surface_object_new(zend_class_entry *ce TSRMLS_DC);
 extern cairo_status_t php_cairo_read_func(void *closure, const unsigned char *data, unsigned int length);
 extern cairo_status_t php_cairo_write_func(void *closure, const unsigned char *data, unsigned int length);
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 static unsigned long php_cairo_ft_read_func(FT_Stream stream, unsigned long offset, unsigned char* buffer, unsigned long count);
 extern void php_cairo_ft_close_stream(FT_Stream stream);
 #endif

@@ -64,6 +64,17 @@ if test "$PHP_CAIRO" != "no"; then
                 PHP_EVAL_INCLINE($CAIRO_INCS)
                 PHP_EVAL_LIBLINE($CAIRO_LIBS, CAIRO_SHARED_LIBADD)
                 AC_DEFINE(HAVE_CAIRO, 1, [whether cairo exists in the system])
+
+                if $PKG_CONFIG --exists freetype2; then
+                    freetype_version_full=`$PKG_CONFIG --modversion freetype2`
+                    AC_MSG_RESULT([found $freetype_version_full])
+                    FREETYPE_LIBS="$LDFLAGS `$PKG_CONFIG --libs freetype2`"
+                    FREETYPE_INCS="$CFLAGS `$PKG_CONFIG --cflags-only-I freetype2`"
+                    PHP_EVAL_INCLINE($FREETYPE_INCS)
+                    PHP_EVAL_LIBLINE($FREETYPE_LIBS, FREETYPE_SHARED_LIBADD)
+                    AC_DEFINE(HAVE_FREETYPE, 1, [whether freetype2 exists in the system])
+                fi
+                    
             else
                 AC_MSG_RESULT(too old)
                 AC_MSG_ERROR(Ooops ! You need at least cairo 1.4)

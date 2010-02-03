@@ -31,7 +31,7 @@
 zend_class_entry *cairo_ce_cairo;
 zend_object_handlers cairo_std_object_handlers;
 
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 ZEND_DECLARE_MODULE_GLOBALS(cairo)
 static PHP_GINIT_FUNCTION(cairo); 
 
@@ -715,7 +715,7 @@ PHP_FUNCTION(cairo_available_fonts)
 	}
 
 	array_init(return_value);
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	add_next_index_string(return_value,"FREETYPE",1);
 #endif
 #ifdef CAIRO_HAS_QUARTZ_FONT
@@ -742,7 +742,7 @@ PHP_METHOD(Cairo, availableFonts)
 	PHP_CAIRO_RESTORE_ERRORS(TRUE)
 
 	array_init(return_value);
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	add_next_index_string(return_value,"FREETYPE",1);
 #endif
 #ifdef CAIRO_HAS_QUARTZ_FONT
@@ -997,7 +997,7 @@ static const function_entry cairo_functions[] = {
 	cairo_user_font_face_get_text_to_glyphs_func
 #endif */
 
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	PHP_FE(cairo_ft_font_face_create, NULL)
 #endif
 
@@ -1120,7 +1120,7 @@ zend_module_entry cairo_module_entry = {
 	NULL,
 	PHP_MINFO(cairo),
 	PHP_CAIRO_VERSION,
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	PHP_MODULE_GLOBALS(cairo),
 	PHP_GINIT(cairo),
 	NULL, 
@@ -1164,7 +1164,7 @@ PHP_MINIT_FUNCTION(cairo)
 	PHP_MINIT(cairo_scaled_font)(INIT_FUNC_ARGS_PASSTHRU);
 	PHP_MINIT(cairo_font)(INIT_FUNC_ARGS_PASSTHRU); /* must be after font_face */
 
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	PHP_MINIT(cairo_ft_font)(INIT_FUNC_ARGS_PASSTHRU);
 #endif
 /*
@@ -1212,7 +1212,7 @@ PHP_MSHUTDOWN_FUNCTION(cairo)
 	cairo_debug_reset_static_data();
 #endif
 
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 #ifdef ZTS
 	ts_allocate_id(&cairo_globals_id,
 			sizeof(zend_cairo_globals),
@@ -1223,7 +1223,7 @@ PHP_MSHUTDOWN_FUNCTION(cairo)
 #endif	
 #endif
 
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 #ifndef ZTS
 	php_cairo_globals_dtor(&cairo_globals TSRMLS_CC);
 #endif
@@ -1299,7 +1299,7 @@ PHP_MINFO_FUNCTION(cairo)
 		);
 	php_info_print_table_colspan_header(2, "Font Backends Available");
 	php_info_print_table_row(2, "Freetype Fonts",
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 		"enabled"
 #else
 		"disabled"

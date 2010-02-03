@@ -29,7 +29,7 @@
 #include "php_cairo.h"
 #include "zend_exceptions.h"
 
-#ifdef CAIRO_HAS_FT_FONT
+#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 #include <fontconfig/fontconfig.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
