@@ -1137,7 +1137,7 @@ ZEND_GET_MODULE(cairo)
 #endif
 
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
-static PHP_GINIT_FUNCTION(cairo)
+PHP_GINIT_FUNCTION(cairo)
 {
 	cairo_globals->ft_lib = NULL;
 }
