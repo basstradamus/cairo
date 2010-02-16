@@ -135,13 +135,6 @@ typedef struct _cairo_font_face_object {
 	cairo_font_face_t *font_face;
 } cairo_font_face_object;
 
-#if defined(CAIRO_HAS_WIN32_FONT) && defined(HAVE_WIN32_FONT)
-typedef struct _cairo_win32_font_face_object {
-	zend_object std;
-	cairo_font_face_t *font_face;
-} cairo_win32_font_face_object;
-#endif
-
 /**
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 typedef struct _cairo_ft_font_face_object {
