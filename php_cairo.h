@@ -135,14 +135,6 @@ typedef struct _cairo_font_face_object {
 	cairo_font_face_t *font_face;
 } cairo_font_face_object;
 
-#if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
-typedef struct _cairo_ft_font_face_object {
-	zend_object std;
-	cairo_font_face_t *font_face;
-	FT_Stream ft_stream;
-} cairo_ft_font_face_object;
-#endif
-
 typedef struct _cairo_font_options_object {
 	zend_object std;
 	cairo_font_options_t *font_options;
