@@ -176,6 +176,7 @@ PHP_MINIT_FUNCTION(cairo_svg_surface);
 PHP_MINIT_FUNCTION(cairo_pdf_surface);
 PHP_MINIT_FUNCTION(cairo_ps_surface);
 PHP_MINIT_FUNCTION(cairo_ft_font);
+PHP_MINIT_FUNCTION(cairo_win32_font);
 
 /* cairo functions */
 PHP_FUNCTION(cairo_version);
@@ -419,6 +420,9 @@ PHP_FUNCTION(cairo_font_face_get_type);
 #endif
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	PHP_FUNCTION(cairo_ft_font_face_create);
+#endif
+#if defined(CAIRO_HAS_WIN32_FONT) && defined(HAVE_WIN32_FONT)
+	PHP_FUNCTION(cairo_win32_font_face_create);
 #endif
 
 /* SVG Surface Functiosn */

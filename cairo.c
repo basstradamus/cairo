@@ -1001,6 +1001,10 @@ static const function_entry cairo_functions[] = {
 	PHP_FE(cairo_ft_font_face_create, NULL)
 #endif
 
+#if defined(CAIRO_HAS_WIN32_FONT) && defined(HAVE_WIN32_FONT)
+	PHP_FE(cairo_win32_font_face_create, NULL)
+#endif
+
 	/* Generic Surface Functions */
 	PHP_FE(cairo_surface_create_similar, cairo_surface_create_similar_args)
 	PHP_FE(cairo_surface_status, cairo_surface_args)
