@@ -34,18 +34,51 @@
 #include <Wingdi.h>
 #include <cairo/cairo-win32.h>
 
+zend_class_entry *cairo_ce_cairowin32font;
+
+ZEND_BEGIN_ARG_INFO_EX(CairoFtFontFace_construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
+	ZEND_ARG_ARRAY_INFO(0, "font_options", 1)
+ZEND_END_ARG_INFO()
+
+
+/* {{{ proto CairoWin32FontFace cairo_win32_font_face_create([array font_options])
+	   Creates a new font face for the Win32 backend */
 PHP_FUNCTION(cairo_win32_font_face_create)
 {
+	HashTable *font_options;
+	LOGFONT lfont;
+	HFTON	hfont;
 	
+	/** just testing - ignore this :P */
+	hfont = CreateFont(48, 0, 0, 0, FW_DONTCARE, FALSE, TRUE, FALSE, DEFAULT_CHARSET,
+						OUT_OUTLINE_PRECIS, CLIP_DEFAULT_PRECIS, CLEARTYPE_QUALITY,
+						VARIABLE_PITCH, TEXT("Impact"));
 	
 	return;
 }
+
+PHP_METHOD(CairoWin32FontFace, __construct)
+{
+	
+}
+
+static function_entry cairo_win32_font_methods[] = {
+	PHP_ME(CairoWin32FontFace, __construct, CairoWin32FontFace_construct_args, \
+		ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
+	{NULL, NULL, NULL}
+};
+
+zend_object_value cairo_win32_font_face_create_new(
 
 /** The zend_function_entry's are in php_cairo.h and cairo.c */
 
 PHP_MINIT_FUNCTION(cairo_win32_font)
 {
-
+	zend_class_entry ce;
+	
+	INIT_CLASS_ENTRY(ce, "CairoWin32FontFace", cairo_fe_win32font);
+	cairo_ce_cairowin32font = zend_register_internal_class_ex(
+		&ce, cairo_ce_cairofontface, "CairoFontFace" TSRMLS_CC);
 	return SUCCESS;
 }
 
