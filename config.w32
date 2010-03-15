@@ -8,6 +8,10 @@ if (PHP_CAIROWIN32 != "no") {
 		if (CHECK_LIB("cairo_a.lib", "cairo", PHP_CAIROWIN32)) {
 			/* We don't care if this fails, but if it does exists, we need to link */
 			CHECK_LIB("fontconfig.lib", "cairo", PHP_CAIROWIN32);
+			
+			if (!CHECK_LIB("Gdi32.lib", "cairo", PHP_CAIROWIN32)) {
+				WARNING("Could not find Gdi32.lib");
+			}
 
 			EXTENSION("cairo", "cairo.c cairo_error.c cairo_context.c cairo_pattern.c cairo_matrix.c cairo_path.c \
 			cairo_surface.c cairo_image_surface.c cairo_svg_surface.c cairo_pdf_surface.c cairo_ps_surface.c \
@@ -19,6 +23,10 @@ if (PHP_CAIROWIN32 != "no") {
 			AC_DEFINE("HAVE_CAIRO", 1);
 		} else if (CHECK_LIB("cairo.lib", "cairo", PHP_CAIROWIN32)) {
 			CHECK_LIB("fontconfig.lib", "cairo", PHP_CAIROWIN32);
+			
+			if (!CHECK_LIB("Gdi32.lib", "cairo", PHP_CAIROWIN32)) {
+				WARNING("Could not find Gdi32.lib");
+			}
 
 			EXTENSION("cairo", "cairo.c cairo_error.c cairo_context.c cairo_pattern.c cairo_matrix.c cairo_path.c \
 			cairo_surface.c cairo_image_surface.c cairo_svg_surface.c cairo_pdf_surface.c cairo_ps_surface.c \
