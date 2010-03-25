@@ -15,11 +15,12 @@
   | Author: Elizabeth Smith <auroraeosrose@php.net>                      |
   |         Michael Maclean <mgdm@php.net>                               |
   |         Akshat Gupta <g.akshat@gmail.com>                            |
-  |           Mark Skilbeck <markskilbeck@php.net>                         |
+  |         Mark Skilbeck <markskilbeck@php.net>                         |
   +----------------------------------------------------------------------+
 */
 
 /* $Id$ */
+/** TODO: REGISTER_LONG_CONSTANT support in REGISTER_WIN32_LONG_CONSTANT */
 /** The zend_function_entry's are in php_cairo.h and cairo.c */
 
 #ifdef HAVE_CONFIG_H
@@ -100,7 +101,7 @@ zend_class_entry *cairo_ce_cairowin32fontfamily;
  * CairoWin32FontFace::__construct takes 1 optional argument
  */
 ZEND_BEGIN_ARG_INFO_EX(CairoWin32FontFace_construct_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 0)
-    ZEND_ARG_ARRAY_INFO(0, "font_options", 1)
+    ZEND_ARG_INFO(0, "font_options")
 ZEND_END_ARG_INFO()
 
 
@@ -141,7 +142,7 @@ PHP_FUNCTION(cairo_win32_font_face_create)
             if (Z_TYPE_PP(tmp) != IS_STRING) {
                 zend_error(E_WARNING, "cairo_win32_font_face_create() expects key 'lfFaceName' to be of type string");
             } else {
-                lstrcpy(lfont.lfFaceName, Z_STRVAL_PP(tmp));
+                lstrcpy(lfont.lfFaceName, Z_STRVAL_PP(tmp));    
             }
         } else {
             lstrcpy(lfont.lfFaceName, "");
