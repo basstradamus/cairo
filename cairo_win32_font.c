@@ -47,13 +47,14 @@
 # define CLEARTYPE_NATURAL_QUALITY 6
 #endif
 
-/** TODO: Add REGISTER_LONG_CONSTANT support
-    The WinGdi.h definitions of these constants don't give them
-    consistent prefixes, so we'll have to figure out a way of exposing
-    them with better names. */
-#define REGISTER_WIN32_LONG_CONST(ce, const_name, const_value) \
-        zend_declare_class_constant_long(cairo_ce_##ce, const_name, sizeof(const_name) - 1, (long)const_value TSRMLS_CC); 
-        
+/** Windows has a non-existant naming-scheme for
+	its constants, so we have a const_name_p (procedural)
+	string to avoid messing around with const_name. 
+	*/
+#define REGISTER_WIN32_LONG_CONST(ce, const_name, const_value, const_name_p) \
+        zend_declare_class_constant_long(cairo_ce_##ce, const_name, sizeof(const_name) - 1, (long)const_value TSRMLS_CC); \
+		REGISTER_LONG_CONSTANT(const_name_p, const_value, CONST_CS | CONST_PERSISTENT);
+
 #define LFONT_FIND_LONG(name, defaultval) \
     if (zend_hash_find(Z_ARRVAL_P(font_options), #name, sizeof(#name), (void **)&tmp) == SUCCESS) { \
         if (Z_TYPE_PP(tmp) != IS_LONG) \
@@ -158,9 +159,9 @@ PHP_FUNCTION(cairo_win32_font_face_create)
         lfont.lfItalic = FALSE;
         lfont.lfUnderline = FALSE;
         lfont.lfStrikeOut = FALSE;
-        lfont.lfCharSet = OEM_CHARSET;
-        lfont.lfOutPrecision = 0;
-        lfont.lfClipPrecision = 0;
+        lfont.lfCharSet = DEFAULT_CHARSET;
+        lfont.lfOutPrecision = OUT_DEFAULT_PRECIS;
+        lfont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
         lfont.lfQuality = DEFAULT_QUALITY;
         lfont.lfPitchAndFamily = FIXED_PITCH | FF_DONTCARE;
         lstrcpy(lfont.lfFaceName, "");
@@ -224,13 +225,13 @@ PHP_METHOD(CairoWin32FontFace, __construct)
         lfont.lfWidth = 0;
         lfont.lfOrientation = 0;
         lfont.lfEscapement = 0;
-        lfont.lfWeight = FW_NORMAL;
+        lfont.lfWeight = FW_DONTCARE;
         lfont.lfItalic = FALSE;
         lfont.lfUnderline = TRUE;
         lfont.lfStrikeOut = FALSE;
-        lfont.lfCharSet = OEM_CHARSET;
-        lfont.lfOutPrecision = 0;
-        lfont.lfClipPrecision = 0;
+        lfont.lfCharSet = DEFAULT_CHARSET;
+        lfont.lfOutPrecision = OUT_DEFAULT_PRECIS;
+        lfont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
         lfont.lfQuality = DEFAULT_QUALITY;
         lfont.lfPitchAndFamily = FIXED_PITCH | FF_DONTCARE;
         lstrcpy(lfont.lfFaceName, "");
@@ -301,9 +302,7 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     /** These classes are containers for constants defined in WinGdi.h, etc. */
     zend_class_entry ce_cairowin32fontweight;
     zend_class_entry ce_cairowin32fontcharset;
-    /** output precision constants */
     zend_class_entry ce_cairowin32fontoutprec;
-    /** clip precision constants */
     zend_class_entry ce_cairowin32fontclipprec;
     zend_class_entry ce_cairowin32fontquality;
     zend_class_entry ce_cairowin32fontpitch;
@@ -320,104 +319,104 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     INIT_CLASS_ENTRY(ce_cairowin32fontweight, "CairoWin32FontWeight", NULL);
     cairo_ce_cairowin32fontweight = zend_register_internal_class(&ce_cairowin32fontweight TSRMLS_CC);
     cairo_ce_cairowin32fontweight->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "NORMAL", FW_NORMAL);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "DONTCARE", FW_DONTCARE);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "THIN", FW_THIN);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "EXTRALIGHT", FW_EXTRALIGHT);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "ULTRALIGHT", FW_ULTRALIGHT);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "LIGHT", FW_LIGHT);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "REGULAR", FW_REGULAR);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "MEDIUM", FW_MEDIUM);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "SEMIBOLD", FW_SEMIBOLD);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "DEMIBOLD", FW_DEMIBOLD);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "BOLD", FW_BOLD);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "EXTRABOLD", FW_EXTRABOLD);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "ULTRABOLD", FW_ULTRABOLD);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "HEAVY", FW_HEAVY);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "BLACK", FW_BLACK);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "NORMAL", FW_NORMAL, "CAIRO_WIN32_FONT_WEIGHT_NORMAL");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "DONTCARE", FW_DONTCARE, "CAIRO_WIN32_FONT_WEIGHT_DONTCARE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "THIN", FW_THIN, "CAIRO_WIN32_FONT_WEIGHT_THIN");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "EXTRALIGHT", FW_EXTRALIGHT, "CAIRO_WIN32_FONT_WEIGHT_EXTRALIGHT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "ULTRALIGHT", FW_ULTRALIGHT, "CAIRO_WIN32_FONT_WEIGHT_ULTRALIGHT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "LIGHT", FW_LIGHT, "CAIRO_WIN32_FONT_WEIGHT_LIGHT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "REGULAR", FW_REGULAR, "CAIRO_WIN32_FONT_WEIGHT_REGULAR");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "MEDIUM", FW_MEDIUM, "CAIRO_WIN32_FONT_WEIGHT_MEDIUM");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "SEMIBOLD", FW_SEMIBOLD, "CAIRO_WIN32_FONT_WEIGHT_SEMIBOLD");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "DEMIBOLD", FW_DEMIBOLD, "CAIRO_WIN32_FONT_WEIGHT_DEMIBOLD");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "BOLD", FW_BOLD, "CAIRO_WIN32_FONT_WEIGHT_BOLD");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "EXTRABOLD", FW_EXTRABOLD, "CAIRO_WIN32_FONT_WEIGHT_EXTRABOLD");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "ULTRABOLD", FW_ULTRABOLD, "CAIRO_WIN32_FONT_WEIGHT_ULTRABOLD");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "HEAVY", FW_HEAVY, "CAIRO_WIN32_FONT_WEIGHT_HEAVY");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "BLACK", FW_BLACK, "CAIRO_WIN32_FONT_WEIGHT_BLACK");
 
     INIT_CLASS_ENTRY(ce_cairowin32fontcharset, "CairoWin32FontCharset", NULL);
     cairo_ce_cairowin32fontcharset = zend_register_internal_class(&ce_cairowin32fontcharset TSRMLS_CC);
     cairo_ce_cairowin32fontcharset->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "ANSI", ANSI_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "BALTIC", BALTIC_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "CHINESEBIG5", CHINESEBIG5_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "DEFAULT", DEFAULT_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "EASTEUROPE", EASTEUROPE_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "GB2312", GB2312_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "GREEK", GREEK_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "HANGUL", HANGUL_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "MAC", MAC_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "OEM", OEM_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "RUSSIAN", RUSSIAN_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "SHIFTJIS", SHIFTJIS_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "SYMBOL", SYMBOL_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "TURKISH", TURKISH_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "VIETNAMESE", VIETNAMESE_CHARSET);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "ANSI", ANSI_CHARSET, "CAIRO_WIN32_FONT_CHARSET_ANSI");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "BALTIC", BALTIC_CHARSET, "CAIRO_WIN32_FONT_CHARSET_BALTIC");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "CHINESEBIG5", CHINESEBIG5_CHARSET, "CAIRO_WIN32_FONT_CHARSET_CHINESEBIG5");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "DEFAULT", DEFAULT_CHARSET, "CAIRO_WIN32_FONT_CHARSET_DEFAULT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "EASTEUROPE", EASTEUROPE_CHARSET, "CAIRO_WIN32_FONT_CHARSET_EASTEUROPE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "GB2312", GB2312_CHARSET, "CAIRO_WIN32_FONT_CHARSET_GB2312");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "GREEK", GREEK_CHARSET, "CAIRO_WIN32_FONT_CHARSET_GREEK");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "HANGUL", HANGUL_CHARSET, "CAIRO_WIN32_FONT_CHARSET_HANGUL");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "MAC", MAC_CHARSET, "CAIRO_WIN32_FONT_CHARSET_MAC");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "OEM", OEM_CHARSET, "CAIRO_WIN32_FONT_CHARSET_OEM");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "RUSSIAN", RUSSIAN_CHARSET, "CAIRO_WIN32_FONT_CHARSET_RUSSIAN");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "SHIFTJIS", SHIFTJIS_CHARSET, "CAIRO_WIN32_FONT_CHARSET_SHIFTJIS");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "SYMBOL", SYMBOL_CHARSET, "CAIRO_WIN32_FONT_CHARSET_SYMBOL");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "TURKISH", TURKISH_CHARSET, "CAIRO_WIN32_FONT_CHARSET_TURKISH");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "VIETNAMESE", VIETNAMESE_CHARSET, "CAIRO_WIN32_FONT_CHARSET_VIETNAMESE");
 #if(WINVER >= 0x0400)
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "JOHAB", JOHAB_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "ARABIC", ARABIC_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "HEBREW", HEBREW_CHARSET);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "THAI", THAI_CHARSET);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "JOHAB", JOHAB_CHARSET, "CAIRO_WIN32_FONT_CHARSET_JOHAB");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "ARABIC", ARABIC_CHARSET, "CAIRO_WIN32_FONT_CHARSET_ARABIC");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "HEBREW", HEBREW_CHARSET, "CAIRO_WIN32_FONT_CHARSET_HEBREW");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "THAI", THAI_CHARSET, "CAIRO_WIN32_FONT_CHARSET_THAI");
 #endif /** WINVER */
 
     INIT_CLASS_ENTRY(ce_cairowin32fontoutprec, "CairoWin32FontOutputPrecision", NULL);
     cairo_ce_cairowin32fontoutprec = zend_register_internal_class(&ce_cairowin32fontoutprec TSRMLS_CC);
     cairo_ce_cairowin32fontoutprec->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "CHARACTER", OUT_CHARACTER_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "DEFAULT", OUT_DEFAULT_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "DEVICE", OUT_DEVICE_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "OUTLINE", OUT_OUTLINE_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "PS_ONLY", OUT_PS_ONLY_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "RASTER", OUT_RASTER_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "STRING", OUT_STRING_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "STROKE", OUT_STROKE_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "TT_ONLY", OUT_TT_ONLY_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "TT", OUT_TT_PRECIS);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "CHARACTER", OUT_CHARACTER_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_CHARACTER");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "DEFAULT", OUT_DEFAULT_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_DEFAULT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "DEVICE", OUT_DEVICE_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_DEVICE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "OUTLINE", OUT_OUTLINE_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_OUTLINE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "PS_ONLY", OUT_PS_ONLY_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_PS_ONLY");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "RASTER", OUT_RASTER_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_RASTER");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "STRING", OUT_STRING_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_STRING");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "STROKE", OUT_STROKE_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_STROKE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "TT_ONLY", OUT_TT_ONLY_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_TT_ONLY");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "TT", OUT_TT_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_TT");
 
     INIT_CLASS_ENTRY(ce_cairowin32fontclipprec, "CairoWin32FontClipPrecision", NULL);
     cairo_ce_cairowin32fontclipprec = zend_register_internal_class(&ce_cairowin32fontclipprec TSRMLS_CC);
     cairo_ce_cairowin32fontclipprec->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
-    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "CHARACTER", CLIP_CHARACTER_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "DEFAULT", CLIP_DEFAULT_PRECIS);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "CHARACTER", CLIP_CHARACTER_PRECIS, "CAIRO_WIN32_FONT_CLIP_PRECISION_CHARACTER");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "DEFAULT", CLIP_DEFAULT_PRECIS, "CAIRO_WIN32_FONT_CLIP_PRECISION_DEFAULT");
 #if (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN)
     REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "DFA_DISABLE", CLIP_DFA_DISABLE);
 #endif /** _WIN32_WINNT >= _WIN32_WINNT_LONGHORN */
-    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "EMBEDDED", CLIP_EMBEDDED);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "LH_ANGLES", CLIP_LH_ANGLES);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "MASK", CLIP_MASK);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "EMBEDDED", CLIP_EMBEDDED, "CAIRO_WIN32_FONT_CLIP_PRECISION_EMBEDDED");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "LH_ANGLES", CLIP_LH_ANGLES, "CAIRO_WIN32_FONT_CLIP_PRECISION_LH_ANGLES");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "MASK", CLIP_MASK, "CAIRO_WIN32_FONT_CLIP_PRECISION_MASK");
 #if (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN)
     REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "DFA_OVERRIDE", CLIP_DFA_OVERRIDE);
 #endif /** _WIN32_WINNT >= _WIN32_WINNT_LONGHORN */
-    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "STROKE", CLIP_STROKE_PRECIS);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "TT_ALWAYS", CLIP_TT_ALWAYS);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "STROKE", CLIP_STROKE_PRECIS, "CAIRO_WIN32_FONT_CLIP_PRECISION_STROKE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "TT_ALWAYS", CLIP_TT_ALWAYS, "CAIRO_WIN32_FONT_CLIP_PRECISION_TT_ALWAYS");
 
     INIT_CLASS_ENTRY(ce_cairowin32fontquality, "CairoWin32FontQuality", NULL);
     cairo_ce_cairowin32fontquality = zend_register_internal_class(&ce_cairowin32fontquality TSRMLS_CC);
     cairo_ce_cairowin32fontquality->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
-    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "ANTIALIASED", ANTIALIASED_QUALITY);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "CLEARTYPE", CLEARTYPE_QUALITY);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "DEFAULT", DEFAULT_QUALITY);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "DRAFT", DRAFT_QUALITY);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "NONANTIALIASED", NONANTIALIASED_QUALITY);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "PROOF", PROOF_QUALITY);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "ANTIALIASED", ANTIALIASED_QUALITY, "CAIRO_WIN32_FONT_QUALITY_ANTIALIASED");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "CLEARTYPE", CLEARTYPE_QUALITY, "CAIRO_WIN32_FONT_QUALITY_CLEARTYPE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "DEFAULT", DEFAULT_QUALITY, "CAIRO_WIN32_FONT_QUALITY_DEFAULT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "DRAFT", DRAFT_QUALITY, "CAIRO_WIN32_FONT_QUALITY_DRAFT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "NONANTIALIASED", NONANTIALIASED_QUALITY, "CAIRO_WIN32_FONT_QUALITY_NONANTIALIASED");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "PROOF", PROOF_QUALITY, "CAIRO_WIN32_FONT_QUALITY_PROOF");
 
     INIT_CLASS_ENTRY(ce_cairowin32fontpitch, "CairoWin32FontPitch", NULL);
     cairo_ce_cairowin32fontpitch = zend_register_internal_class(&ce_cairowin32fontpitch TSRMLS_CC);
     cairo_ce_cairowin32fontpitch->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
-    REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "DEFAULT", DEFAULT_PITCH);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "FIXED", FIXED_PITCH);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "VARIABLE", VARIABLE_PITCH);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "DEFAULT", DEFAULT_PITCH, "CAIRO_WIN32_FONT_PITCH_DEFAULT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "FIXED", FIXED_PITCH, "CAIRO_WIN32_FONT_PITCH_FIXED");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "VARIABLE", VARIABLE_PITCH, "CAIRO_WIN32_FONT_PITCH_VARIABLE");
 
     INIT_CLASS_ENTRY(ce_cairowin32fontfamily, "CairoWin32FontFamily", NULL);
     cairo_ce_cairowin32fontfamily = zend_register_internal_class(&ce_cairowin32fontfamily TSRMLS_CC);
     cairo_ce_cairowin32fontfamily->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
-    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "DECORATIVE", FF_DECORATIVE);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "DONTCARE", FF_DONTCARE);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "MODERN", FF_MODERN);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "ROMAN", FF_ROMAN);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "SCRIPT", FF_SCRIPT);
-    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "SWISS", FF_SWISS);
+    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "DECORATIVE", FF_DECORATIVE, "CAIRO_WIN32_FONT_FAMILY_DECORATIVE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "DONTCARE", FF_DONTCARE, "CAIRO_WIN32_FONT_FAMILY_DONTCARE");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "MODERN", FF_MODERN, "CAIRO_WIN32_FONT_FAMILY_MODERN");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "ROMAN", FF_ROMAN, "CAIRO_WIN32_FONT_FAMILY_ROMAN");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "SCRIPT", FF_SCRIPT, "CAIRO_WIN32_FONT_FAMILY_SCRIPT");
+    REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "SWISS", FF_SWISS, "CAIRO_WIN32_FONT_FAMILY_SWISS");
 
     return SUCCESS;
 }
