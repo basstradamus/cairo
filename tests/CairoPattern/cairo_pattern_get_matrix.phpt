@@ -30,20 +30,20 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_pattern_get_matrix();
 cairo_pattern_get_matrix($pattern, 1);
 
-// arg types is CairoPattern
+// arg types is Cairo\Pattern
 cairo_pattern_get_matrix(1);
 
 die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 bool(false)
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 bool(true)
 bool(false)
@@ -51,6 +51,6 @@ bool(false)
 Warning: cairo_pattern_get_matrix() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_pattern_get_matrix() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_matrix() must be an instance of CairoPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_matrix() must be an instance of Cairo\Pattern, integer given
 
-Warning: cairo_pattern_get_matrix() expects parameter 1 to be CairoPattern, integer given in %s on line %d
+Warning: cairo_pattern_get_matrix() expects parameter 1 to be Cairo\Pattern, integer given in %s on line %d

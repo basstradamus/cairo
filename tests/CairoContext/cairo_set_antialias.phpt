@@ -30,17 +30,17 @@ cairo_set_antialias(1, 1);
 cairo_set_antialias($context, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 int(2)
 
 Warning: cairo_set_antialias() expects at least 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_set_antialias() expects at most 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_antialias() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_set_antialias() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_set_antialias() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_set_antialias() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
 
 Warning: cairo_set_antialias() expects parameter 2 to be long, array given in %s on line %d

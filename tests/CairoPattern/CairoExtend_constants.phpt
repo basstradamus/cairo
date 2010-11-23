@@ -1,5 +1,5 @@
 --TEST--
-CairoExtend class constants
+Cairo\Extend class constants
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -14,7 +14,7 @@ $constants = array(
 	);
 
 foreach($constants as $name) {
-	var_dump(defined('CairoExtend::' . $name));
+	var_dump(defined('Cairo\Extend::' . $name));
 }
 ?>
 --EXPECT--

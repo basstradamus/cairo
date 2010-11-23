@@ -1,5 +1,5 @@
 --TEST--
-CairoFontType class constants
+Cairo\FontFace\Type class constants
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -21,9 +21,9 @@ if($version > 10800) {
 }
 $error = false;
 foreach($constants as $name) {
-	if (!defined('CairoFontType::' . $name)) {
+	if (!defined('Cairo\FontFace\Type::' . $name)) {
 		$error = true;
-		echo 'Missing Constant: CairoFontType::' . $name . "\n";
+		echo 'Missing Constant: Cairo\FontFace\Type::' . $name . "\n";
 	}
 }
 if (!$error) {

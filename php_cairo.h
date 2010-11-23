@@ -24,6 +24,14 @@
 #define PHP_CAIRO_H
 
 #define PHP_CAIRO_VERSION "0.2.0-beta"
+#define PHP_CAIRO_SURFACE_NS  ZEND_NS_NAME("Cairo", "Surface")
+#define PHP_CAIRO_FONT_NS     ZEND_NS_NAME("Cairo", "Font")
+#define PHP_CAIRO_FONTFACE_NS ZEND_NS_NAME("Cairo", "FontFace")
+#define PHP_CAIRO_WIN32_FONTFACE_NS ZEND_NS_NAME(PHP_CAIRO_FONTFACE_NS, "Win32")
+#define PHP_CAIRO_PATTERN_NS  ZEND_NS_NAME("Cairo", "Pattern")
+#define PHP_CAIRO_GRADIENT_PATTERN_NS ZEND_NS_NAME(PHP_CAIRO_PATTERN_NS, "Gradient")
+#define PHP_CAIRO_HINT_NS     ZEND_NS_NAME("Cairo", "Hint")
+#define PHP_CAIRO_LINE_NS     ZEND_NS_NAME("Cairo", "Line")
 
 extern zend_module_entry cairo_module_entry;
 #define phpext_cairo_ptr &cairo_module_entry

@@ -38,11 +38,11 @@ cairo_mask_surface($context, $surface, 1, array());
 die;
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 
 Warning: cairo_mask_surface() expects at least 2 parameters, 0 given in %s on line %d
@@ -50,12 +50,12 @@ Warning: cairo_mask_surface() expects at least 2 parameters, 0 given in %s on li
 Warning: cairo_mask_surface() expects at least 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_mask_surface() expects at most 4 parameters, 5 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_mask_surface() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_mask_surface() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_mask_surface() expects parameter 1 to be CairoContext, integer given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_mask_surface() must be an instance of CairoSurface, array given
+Warning: cairo_mask_surface() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_mask_surface() must be an instance of Cairo\Surface, array given
 
-Warning: cairo_mask_surface() expects parameter 2 to be CairoSurface, array given in %s on line %d
+Warning: cairo_mask_surface() expects parameter 2 to be Cairo\Surface, array given in %s on line %d
 
 Warning: cairo_mask_surface() expects parameter 3 to be double, array given in %s on line %d
 

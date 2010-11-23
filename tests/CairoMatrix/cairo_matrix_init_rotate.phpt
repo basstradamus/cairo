@@ -17,7 +17,7 @@ cairo_matrix_init_rotate(1, 1);
 cairo_matrix_init_rotate(array());
 ?>
 --EXPECTF--
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 
 Warning: cairo_matrix_init_rotate() expects exactly 1 parameter, 0 given in %s on line %d

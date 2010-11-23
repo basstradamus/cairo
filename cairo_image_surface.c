@@ -464,7 +464,7 @@ PHP_METHOD(CairoImageSurface, createFromPng)
 	} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
 		php_stream_from_zval(stream, &stream_zval);	
 	} else {
-		zend_throw_exception(cairo_ce_cairoexception, "CairoImageSurface::createFromPng() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
+		zend_throw_exception(cairo_ce_cairoexception, "Cairo\\Surface\\Image::createFromPng() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
 		return;
 	}
 
@@ -519,14 +519,14 @@ PHP_MINIT_FUNCTION(cairo_image_surface)
 {
 	zend_class_entry ce, format_ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoImageSurface", cairo_image_surface_methods);
-	cairo_ce_cairoimagesurface = zend_register_internal_class_ex(&ce, cairo_ce_cairosurface, "CairoSurface" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(ce, PHP_CAIRO_SURFACE_NS, "Image", cairo_image_surface_methods);
+	cairo_ce_cairoimagesurface = zend_register_internal_class_ex(&ce, cairo_ce_cairosurface, PHP_CAIRO_SURFACE_NS TSRMLS_CC);
 	cairo_ce_cairoimagesurface->create_object = cairo_surface_object_new;
 
 #if CAIRO_VERSION >= CAIRO_VERSION_ENCODE(1, 6, 0)
-	INIT_CLASS_ENTRY(format_ce, "CairoFormat", cairo_format_methods);
+	INIT_NS_CLASS_ENTRY(format_ce, "Cairo", "Format", cairo_format_methods);
 #else
-	INIT_CLASS_ENTRY(format_ce, "CairoFormat", NULL);
+	INIT_NS_CLASS_ENTRY(format_ce, "Cairo", "Format", NULL);
 #endif
 	cairo_ce_cairoformat = zend_register_internal_class(&format_ce TSRMLS_CC);
 	cairo_ce_cairoformat->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;

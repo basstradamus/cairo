@@ -1,29 +1,29 @@
 --TEST--
-CairoFontOptions->setHintMetrics() method
+Cairo\Font\Options->setHintMetrics() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 ?>
 --FILE--
 <?php
-$options = new CairoFontOptions();
+$options = new Cairo\Font\Options();
 var_dump($options);
 
-$options->setHintMetrics(CairoHintMetrics::METRICS_ON);
+$options->setHintMetrics(Cairo\Hint\Metrics::METRICS_ON);
 
 /* Wrong number args 1*/
 try {
     $options->setHintMetrics();
     trigger_error('setHintMetrics requires 1 arg');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
 /* Wrong number args 2 */
 try {
-    $options->setHintMetrics(CairoHintMetrics::METRICS_ON, 1);
+    $options->setHintMetrics(Cairo\Hint\Metrics::METRICS_ON, 1);
     trigger_error('setHintMetrics requires only 1 arg');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 
@@ -31,13 +31,13 @@ try {
 try {
     $options->setHintMetrics(array());
     trigger_error('setHintMetrics requires int');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
-CairoFontOptions::setHintMetrics() expects exactly 1 parameter, 0 given
-CairoFontOptions::setHintMetrics() expects exactly 1 parameter, 2 given
-CairoFontOptions::setHintMetrics() expects parameter 1 to be long, array given
+Cairo\Font\Options::setHintMetrics() expects exactly 1 parameter, 0 given
+Cairo\Font\Options::setHintMetrics() expects exactly 1 parameter, 2 given
+Cairo\Font\Options::setHintMetrics() expects parameter 1 to be long, array given

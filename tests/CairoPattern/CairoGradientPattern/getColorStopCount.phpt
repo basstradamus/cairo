@@ -11,7 +11,7 @@ $green = 0.6;
 $blue = 0.5;
 $alpha = 0.2;
 
-$pattern = new CairoLinearGradient(1, 2, 3, 4);
+$pattern = new Cairo\Pattern\Gradient\Linear(1, 2, 3, 4);
 var_dump($pattern);
 
 var_dump($pattern->getColorStopCount());
@@ -24,13 +24,13 @@ var_dump($pattern->getColorStopCount());
 try {
     $pattern->getColorStopCount(1);
     trigger_error('getColorStopCount with too many args');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 int(0)
 int(3)
-CairoGradientPattern::getColorStopCount() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Gradient::getColorStopCount() expects exactly 0 parameters, 1 given

@@ -33,9 +33,9 @@ cairo_append_path(1, $path);
 cairo_append_path($context, 1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 object(CairoPath)#%d (0) {
 }
@@ -45,9 +45,9 @@ Warning: cairo_append_path() expects exactly 2 parameters, 0 given in %s on line
 Warning: cairo_append_path() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_append_path() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_append_path() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_append_path() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_append_path() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_append_path() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
 CAUGHT ERROR: Argument 2 passed to cairo_append_path() must be an instance of CairoPath, integer given
 
 Warning: cairo_append_path() expects parameter 2 to be CairoPath, integer given in %s on line %d

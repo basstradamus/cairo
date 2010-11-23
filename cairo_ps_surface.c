@@ -90,7 +90,7 @@ PHP_METHOD(CairoPsSurface, __construct)
 		} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE) {
 			php_stream_from_zval(stream, &stream_zval);
 		} else {
-			zend_throw_exception(cairo_ce_cairoexception, "CairoPsSurface::__construct() expects parameter 1 to be null, a string, or a stream resource", 0 TSRMLS_CC);
+			zend_throw_exception(cairo_ce_cairoexception, "Cairo\\Surface\\PS::__construct() expects parameter 1 to be null, a string, or a stream resource", 0 TSRMLS_CC);
 			return;
 		}
 
@@ -428,11 +428,11 @@ PHP_MINIT_FUNCTION(cairo_ps_surface)
 	zend_class_entry pssurface_ce;
 	zend_class_entry pslevel_ce;
 
-	INIT_CLASS_ENTRY(pssurface_ce, "CairoPsSurface", cairo_ps_surface_methods);
-	cairo_ce_cairopssurface = zend_register_internal_class_ex(&pssurface_ce, cairo_ce_cairosurface, "CairoSurface" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(pssurface_ce, PHP_CAIRO_SURFACE_NS, "PS", cairo_ps_surface_methods);
+	cairo_ce_cairopssurface = zend_register_internal_class_ex(&pssurface_ce, cairo_ce_cairosurface, PHP_CAIRO_SURFACE_NS TSRMLS_CC);
 	cairo_ce_cairopssurface->create_object = cairo_surface_object_new;
 
-	INIT_CLASS_ENTRY(pslevel_ce, "CairoPsLevel", NULL);
+	INIT_NS_CLASS_ENTRY(pslevel_ce, PHP_CAIRO_SURFACE_NS, ZEND_NS_NAME("PS", "Level"), NULL);
 	cairo_ce_cairopslevel = zend_register_internal_class(&pslevel_ce TSRMLS_CC);
 	cairo_ce_cairopslevel->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

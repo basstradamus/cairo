@@ -37,14 +37,14 @@ cairo_get_font_options(array());
 die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
 bool(false)
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
 bool(true)
 bool(false)
@@ -52,6 +52,6 @@ bool(false)
 Warning: cairo_get_font_options() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_get_font_options() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_get_font_options() must be an instance of CairoContext, array given
+CAUGHT ERROR: Argument 1 passed to cairo_get_font_options() must be an instance of Cairo\Context, array given
 
-Warning: cairo_get_font_options() expects parameter 1 to be CairoContext, array given in %s on line %d
+Warning: cairo_get_font_options() expects parameter 1 to be Cairo\Context, array given in %s on line %d

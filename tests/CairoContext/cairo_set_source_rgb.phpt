@@ -35,9 +35,9 @@ cairo_set_source_rgb($context, 1, 1, array());
 
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 
 Warning: cairo_set_source_rgb() expects exactly 4 parameters, 0 given in %s on line %d
@@ -49,9 +49,9 @@ Warning: cairo_set_source_rgb() expects exactly 4 parameters, 2 given in %s on l
 Warning: cairo_set_source_rgb() expects exactly 4 parameters, 3 given in %s on line %d
 
 Warning: cairo_set_source_rgb() expects exactly 4 parameters, 5 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_source_rgb() must be an instance of CairoContext, array given
+CAUGHT ERROR: Argument 1 passed to cairo_set_source_rgb() must be an instance of Cairo\Context, array given
 
-Warning: cairo_set_source_rgb() expects parameter 1 to be CairoContext, array given in %s on line %d
+Warning: cairo_set_source_rgb() expects parameter 1 to be Cairo\Context, array given in %s on line %d
 
 Warning: cairo_set_source_rgb() expects parameter 2 to be double, array given in %s on line %d
 

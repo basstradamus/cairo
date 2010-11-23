@@ -36,7 +36,7 @@ unlink(dirname(__FILE__) . '/test.png');
 unlink(dirname(__FILE__) . '/stream.png');
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 
 Warning: cairo_surface_write_to_png() expects exactly 2 parameters, 0 given in %s on line %d
@@ -44,8 +44,8 @@ Warning: cairo_surface_write_to_png() expects exactly 2 parameters, 0 given in %
 Warning: cairo_surface_write_to_png() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_surface_write_to_png() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_surface_write_to_png() must be an instance of CairoSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_surface_write_to_png() must be an instance of Cairo\Surface, integer given
 
-Warning: cairo_surface_write_to_png() expects parameter 1 to be CairoSurface, integer given in %s on line %d
+Warning: cairo_surface_write_to_png() expects parameter 1 to be Cairo\Surface, integer given in %s on line %d
 
 Warning: cairo_surface_write_to_png() expects parameter 1 to be a string or a stream resource in %s on line %d

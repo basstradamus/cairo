@@ -34,16 +34,16 @@ cairo_scaled_font_get_font_matrix(1);
 die; // GC issues, bogus memleaks reported without this
 ?>
 --EXPECTF--
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
-object(CairoScaledFont)#%d (0) {
+object(Cairo\Font\Scaled)#%d (0) {
 }
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 
 Warning: cairo_scaled_font_get_font_matrix() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_scaled_font_get_font_matrix() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_scaled_font_get_font_matrix() must be an instance of CairoScaledFont, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_scaled_font_get_font_matrix() must be an instance of Cairo\Font\Scaled, integer given
 
-Warning: cairo_scaled_font_get_font_matrix() expects parameter 1 to be CairoScaledFont, integer given in %s on line %d
+Warning: cairo_scaled_font_get_font_matrix() expects parameter 1 to be Cairo\Font\Scaled, integer given in %s on line %d

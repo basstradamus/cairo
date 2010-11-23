@@ -21,16 +21,16 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_font_face_get_type();
 cairo_font_face_get_type($fontface);
 
-// arg type is CairoFontFace
+// arg type is Cairo\FontFace
 cairo_font_face_get_type(1);
 cairo_font_face_get_type($fontface);
 ?>
 --EXPECTF--
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
 int(0)
 
 Warning: cairo_font_face_get_type() expects exactly 1 parameter, 0 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_font_face_get_type() must be an instance of CairoFontFace, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_font_face_get_type() must be an instance of Cairo\FontFace, integer given
 
-Warning: cairo_font_face_get_type() expects parameter 1 to be CairoFontFace, integer given in %s on line %d
+Warning: cairo_font_face_get_type() expects parameter 1 to be Cairo\FontFace, integer given in %s on line %d

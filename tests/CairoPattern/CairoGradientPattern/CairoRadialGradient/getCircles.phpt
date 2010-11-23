@@ -1,12 +1,12 @@
 --TEST--
-CairoRadialGradient->getCircles() method
+Cairo\Pattern\Gradient\Radial->getCircles() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 ?>
 --FILE--
 <?php
-$pattern = new CairoRadialGradient(0.5, 0.5, 0.25, 0.5, 0.5, 0.5);
+$pattern = new Cairo\Pattern\Gradient\Radial(0.5, 0.5, 0.25, 0.5, 0.5, 0.5);
 var_dump($pattern);
 
 var_dump($pattern->getCircles());
@@ -15,12 +15,12 @@ var_dump($pattern->getCircles());
 try {
     $pattern->getCircles(1);
     trigger_error('getCircles with too many args');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoRadialGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Radial)#%d (0) {
 }
 array(6) {
   ["x0"]=>
@@ -36,4 +36,4 @@ array(6) {
   ["r1"]=>
   float(0.5)
 }
-CairoRadialGradient::getCircles() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Gradient\Radial::getCircles() expects exactly 0 parameters, 1 given

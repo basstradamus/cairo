@@ -2986,7 +2986,7 @@ PHP_MINIT_FUNCTION(cairo_context)
 {
 	zend_class_entry ce, antialias_ce, subpixelorder_ce, fillrule_ce, linecap_ce, linejoin_ce, operator_ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoContext", cairo_context_methods);
+	INIT_NS_CLASS_ENTRY(ce, "Cairo", "Context", cairo_context_methods);
 	cairo_ce_cairocontext = zend_register_internal_class(&ce TSRMLS_CC);
 	cairo_ce_cairocontext->create_object = cairo_context_object_new;
 
@@ -2996,7 +2996,7 @@ PHP_MINIT_FUNCTION(cairo_context)
 
 	PHP_CAIRO_CTOR_WRAPPER_FUNC_INIT(cairo_ce_cairocontext);
 
-	INIT_CLASS_ENTRY(antialias_ce, "CairoAntialias", NULL);
+	INIT_NS_CLASS_ENTRY(antialias_ce, "Cairo", "Antialias", NULL);
 	cairo_ce_cairoantialias = zend_register_internal_class(&antialias_ce TSRMLS_CC);
 	cairo_ce_cairoantialias->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -3009,7 +3009,7 @@ PHP_MINIT_FUNCTION(cairo_context)
 	REGISTER_CAIRO_ANTIALIAS_LONG_CONST("MODE_GRAY", CAIRO_ANTIALIAS_GRAY);
 	REGISTER_CAIRO_ANTIALIAS_LONG_CONST("MODE_SUBPIXEL", CAIRO_ANTIALIAS_SUBPIXEL);
 
-	INIT_CLASS_ENTRY(subpixelorder_ce, "CairoSubpixelOrder", NULL);
+	INIT_NS_CLASS_ENTRY(subpixelorder_ce, "Cairo", "SubpixelOrder", NULL);
 	cairo_ce_cairosubpixelorder = zend_register_internal_class(&subpixelorder_ce TSRMLS_CC);
 	cairo_ce_cairosubpixelorder->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -3023,7 +3023,7 @@ PHP_MINIT_FUNCTION(cairo_context)
 	REGISTER_CAIRO_SUBPIXELORDER_LONG_CONST("ORDER_VRGB", CAIRO_SUBPIXEL_ORDER_VRGB);
 	REGISTER_CAIRO_SUBPIXELORDER_LONG_CONST("ORDER_VBGR", CAIRO_SUBPIXEL_ORDER_VBGR);
 
-	INIT_CLASS_ENTRY(fillrule_ce, "CairoFillRule", NULL);
+	INIT_NS_CLASS_ENTRY(fillrule_ce, "Cairo", "FillRule", NULL);
 	cairo_ce_cairofillrule = zend_register_internal_class(&fillrule_ce TSRMLS_CC);
 	cairo_ce_cairofillrule->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -3034,7 +3034,7 @@ PHP_MINIT_FUNCTION(cairo_context)
 	REGISTER_CAIRO_FILLRULE_LONG_CONST("WINDING", CAIRO_FILL_RULE_WINDING);
 	REGISTER_CAIRO_FILLRULE_LONG_CONST("EVEN_ODD", CAIRO_FILL_RULE_EVEN_ODD);
 
-	INIT_CLASS_ENTRY(linecap_ce, "CairoLineCap", NULL);
+	INIT_NS_CLASS_ENTRY(linecap_ce, "Cairo", "LineCap", NULL);
 	cairo_ce_cairolinecap = zend_register_internal_class(&linecap_ce TSRMLS_CC);
 	cairo_ce_cairolinecap->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -3046,7 +3046,7 @@ PHP_MINIT_FUNCTION(cairo_context)
 	REGISTER_CAIRO_LINECAP_LONG_CONST("ROUND", CAIRO_LINE_CAP_ROUND);
 	REGISTER_CAIRO_LINECAP_LONG_CONST("SQUARE", CAIRO_LINE_CAP_SQUARE);
 
-	INIT_CLASS_ENTRY(linejoin_ce, "CairoLineJoin", NULL);
+	INIT_NS_CLASS_ENTRY(linejoin_ce, "Cairo", "LineJoin", NULL);
 	cairo_ce_cairolinejoin = zend_register_internal_class(&linejoin_ce TSRMLS_CC);
 	cairo_ce_cairolinejoin->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -3058,7 +3058,7 @@ PHP_MINIT_FUNCTION(cairo_context)
 	REGISTER_CAIRO_LINEJOIN_LONG_CONST("ROUND", CAIRO_LINE_JOIN_ROUND);
 	REGISTER_CAIRO_LINEJOIN_LONG_CONST("BEVEL", CAIRO_LINE_JOIN_BEVEL);
 
-	INIT_CLASS_ENTRY(operator_ce, "CairoOperator", NULL);
+	INIT_NS_CLASS_ENTRY(operator_ce, "Cairo", "Operator", NULL);
 	cairo_ce_cairooperator = zend_register_internal_class(&operator_ce TSRMLS_CC);
 	cairo_ce_cairooperator->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

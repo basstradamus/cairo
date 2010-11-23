@@ -340,15 +340,15 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     zend_class_entry ce_cairowin32fontpitch;
     zend_class_entry ce_cairowin32fontfamily;
 
-    INIT_CLASS_ENTRY(ce, "CairoWin32FontFace", cairo_win32_font_methods);
+    INIT_NS_CLASS_ENTRY(ce, PHP_CAIRO_FONTFACE_NS, "Win32", cairo_win32_font_methods);
     cairo_ce_cairowin32font = zend_register_internal_class_ex(
-        &ce, cairo_ce_cairofontface, "CairoFontFace" TSRMLS_CC);
-    /** So Zend knows what function to call when a new CairoWin32FontFace
+        &ce, cairo_ce_cairofontface, PHP_CAIRO_FONTFACE_NS TSRMLS_CC);
+    /** So Zend knows what function to call when a new Cairo\FontFace\Win32
         is requested */
     cairo_ce_cairowin32font->create_object = cairo_win32_font_face_create_new;
 
     /** Commence BORING constant definitions! */
-    INIT_CLASS_ENTRY(ce_cairowin32fontweight, "CairoWin32FontWeight", NULL);
+    INIT_NS_CLASS_ENTRY(ce_cairowin32fontweight, PHP_CAIRO_WIN32_FONTFACE_NS, "Weight", NULL);
     cairo_ce_cairowin32fontweight = zend_register_internal_class(&ce_cairowin32fontweight TSRMLS_CC);
     cairo_ce_cairowin32fontweight->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
     REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "NORMAL", FW_NORMAL, "CAIRO_WIN32_FONT_WEIGHT_NORMAL");
@@ -367,7 +367,7 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "HEAVY", FW_HEAVY, "CAIRO_WIN32_FONT_WEIGHT_HEAVY");
     REGISTER_WIN32_LONG_CONST(cairowin32fontweight, "BLACK", FW_BLACK, "CAIRO_WIN32_FONT_WEIGHT_BLACK");
 
-    INIT_CLASS_ENTRY(ce_cairowin32fontcharset, "CairoWin32FontCharset", NULL);
+    INIT_NS_CLASS_ENTRY(ce_cairowin32fontcharset, PHP_CAIRO_WIN32_FONTFACE_NS, "Charset", NULL);
     cairo_ce_cairowin32fontcharset = zend_register_internal_class(&ce_cairowin32fontcharset TSRMLS_CC);
     cairo_ce_cairowin32fontcharset->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
     REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "ANSI", ANSI_CHARSET, "CAIRO_WIN32_FONT_CHARSET_ANSI");
@@ -392,7 +392,7 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     REGISTER_WIN32_LONG_CONST(cairowin32fontcharset, "THAI", THAI_CHARSET, "CAIRO_WIN32_FONT_CHARSET_THAI");
 #endif /** WINVER */
 
-    INIT_CLASS_ENTRY(ce_cairowin32fontoutprec, "CairoWin32FontOutputPrecision", NULL);
+    INIT_NS_CLASS_ENTRY(ce_cairowin32fontoutprec, PHP_CAIRO_WIN32_FONTFACE_NS, "OutputPrecision", NULL);
     cairo_ce_cairowin32fontoutprec = zend_register_internal_class(&ce_cairowin32fontoutprec TSRMLS_CC);
     cairo_ce_cairowin32fontoutprec->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
     REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "CHARACTER", OUT_CHARACTER_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_CHARACTER");
@@ -406,7 +406,7 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "TT_ONLY", OUT_TT_ONLY_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_TT_ONLY");
     REGISTER_WIN32_LONG_CONST(cairowin32fontoutprec, "TT", OUT_TT_PRECIS, "CAIRO_WIN32_FONT_OUT_PRECISION_TT");
 
-    INIT_CLASS_ENTRY(ce_cairowin32fontclipprec, "CairoWin32FontClipPrecision", NULL);
+    INIT_NS_CLASS_ENTRY(ce_cairowin32fontclipprec, PHP_CAIRO_WIN32_FONTFACE_NS, "ClipPrecision", NULL);
     cairo_ce_cairowin32fontclipprec = zend_register_internal_class(&ce_cairowin32fontclipprec TSRMLS_CC);
     cairo_ce_cairowin32fontclipprec->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
     REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "CHARACTER", CLIP_CHARACTER_PRECIS, "CAIRO_WIN32_FONT_CLIP_PRECISION_CHARACTER");
@@ -424,7 +424,7 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "STROKE", CLIP_STROKE_PRECIS, "CAIRO_WIN32_FONT_CLIP_PRECISION_STROKE");
     REGISTER_WIN32_LONG_CONST(cairowin32fontclipprec, "TT_ALWAYS", CLIP_TT_ALWAYS, "CAIRO_WIN32_FONT_CLIP_PRECISION_TT_ALWAYS");
 
-    INIT_CLASS_ENTRY(ce_cairowin32fontquality, "CairoWin32FontQuality", NULL);
+    INIT_NS_CLASS_ENTRY(ce_cairowin32fontquality, PHP_CAIRO_WIN32_FONTFACE_NS, "Quality", NULL);
     cairo_ce_cairowin32fontquality = zend_register_internal_class(&ce_cairowin32fontquality TSRMLS_CC);
     cairo_ce_cairowin32fontquality->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
     REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "ANTIALIASED", ANTIALIASED_QUALITY, "CAIRO_WIN32_FONT_QUALITY_ANTIALIASED");
@@ -434,14 +434,14 @@ PHP_MINIT_FUNCTION(cairo_win32_font)
     REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "NONANTIALIASED", NONANTIALIASED_QUALITY, "CAIRO_WIN32_FONT_QUALITY_NONANTIALIASED");
     REGISTER_WIN32_LONG_CONST(cairowin32fontquality, "PROOF", PROOF_QUALITY, "CAIRO_WIN32_FONT_QUALITY_PROOF");
 
-    INIT_CLASS_ENTRY(ce_cairowin32fontpitch, "CairoWin32FontPitch", NULL);
+    INIT_NS_CLASS_ENTRY(ce_cairowin32fontpitch, PHP_CAIRO_WIN32_FONTFACE_NS, "Pitch", NULL);
     cairo_ce_cairowin32fontpitch = zend_register_internal_class(&ce_cairowin32fontpitch TSRMLS_CC);
     cairo_ce_cairowin32fontpitch->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
     REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "DEFAULT", DEFAULT_PITCH, "CAIRO_WIN32_FONT_PITCH_DEFAULT");
     REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "FIXED", FIXED_PITCH, "CAIRO_WIN32_FONT_PITCH_FIXED");
     REGISTER_WIN32_LONG_CONST(cairowin32fontpitch, "VARIABLE", VARIABLE_PITCH, "CAIRO_WIN32_FONT_PITCH_VARIABLE");
 
-    INIT_CLASS_ENTRY(ce_cairowin32fontfamily, "CairoWin32FontFamily", NULL);
+    INIT_NS_CLASS_ENTRY(ce_cairowin32fontfamily, PHP_CAIRO_WIN32_FONTFACE_NS, "Family", NULL);
     cairo_ce_cairowin32fontfamily = zend_register_internal_class(&ce_cairowin32fontfamily TSRMLS_CC);
     cairo_ce_cairowin32fontfamily->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
     REGISTER_WIN32_LONG_CONST(cairowin32fontfamily, "DECORATIVE", FF_DECORATIVE, "CAIRO_WIN32_FONT_FAMILY_DECORATIVE");

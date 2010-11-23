@@ -33,22 +33,22 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_get_matrix();
 cairo_get_matrix($context, 1);
 
-// arg types is CairoContext
+// arg types is Cairo\Context
 cairo_get_matrix(1);
 
 die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 bool(false)
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 bool(true)
 bool(false)
@@ -56,6 +56,6 @@ bool(false)
 Warning: cairo_get_matrix() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_get_matrix() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_get_matrix() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_get_matrix() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_get_matrix() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_get_matrix() expects parameter 1 to be Cairo\Context, integer given in %s on line %d

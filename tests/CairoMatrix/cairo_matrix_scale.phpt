@@ -29,7 +29,7 @@ cairo_matrix_scale($matrix, array(), 1);
 cairo_matrix_scale($matrix, 1, array());
 ?>
 --EXPECTF--
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 
 Warning: cairo_matrix_scale() expects exactly 3 parameters, 0 given in %s on line %d
@@ -39,9 +39,9 @@ Warning: cairo_matrix_scale() expects exactly 3 parameters, 1 given in %s on lin
 Warning: cairo_matrix_scale() expects exactly 3 parameters, 2 given in %s on line %d
 
 Warning: cairo_matrix_scale() expects exactly 3 parameters, 4 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_matrix_scale() must be an instance of CairoMatrix, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_matrix_scale() must be an instance of Cairo\Matrix, integer given
 
-Warning: cairo_matrix_scale() expects parameter 1 to be CairoMatrix, integer given in %s on line %d
+Warning: cairo_matrix_scale() expects parameter 1 to be Cairo\Matrix, integer given in %s on line %d
 
 Warning: cairo_matrix_scale() expects parameter 2 to be double, array given in %s on line %d
 

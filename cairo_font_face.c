@@ -35,7 +35,7 @@ zend_class_entry *cairo_ce_cairofonttype;
    CairoFontFace CANNOT be extended in userspace, this will throw an exception on use */
 PHP_METHOD(CairoFontFace, __construct)
 {
-	zend_throw_exception(cairo_ce_cairoexception, "CairoFontFace cannot be constructed", 0 TSRMLS_CC);
+	zend_throw_exception(cairo_ce_cairoexception, "Cairo\\FontFace cannot be constructed", 0 TSRMLS_CC);
 }
 /* }}} */
 
@@ -149,12 +149,12 @@ PHP_MINIT_FUNCTION(cairo_font_face)
 	zend_class_entry fontface_ce;
 	zend_class_entry fonttype_ce;
 
-	INIT_CLASS_ENTRY(fontface_ce, "CairoFontFace", cairo_font_face_methods);
+	INIT_NS_CLASS_ENTRY(fontface_ce, "Cairo", "FontFace", cairo_font_face_methods);
 	cairo_ce_cairofontface = zend_register_internal_class(&fontface_ce TSRMLS_CC);
 	cairo_ce_cairofontface->create_object = cairo_font_face_object_new;
 	cairo_ce_cairofontface->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS;
 
-	INIT_CLASS_ENTRY(fonttype_ce, "CairoFontType", NULL);
+	INIT_NS_CLASS_ENTRY(fonttype_ce, PHP_CAIRO_FONTFACE_NS, "Type", NULL);
 	cairo_ce_cairofonttype = zend_register_internal_class(&fonttype_ce TSRMLS_CC);
 	cairo_ce_cairofonttype->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

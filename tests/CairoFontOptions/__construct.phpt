@@ -1,23 +1,23 @@
 --TEST--
-new CairoFontOptions [ __construct() method ]
+new Cairo\Font\Options [ __construct() method ]
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 ?>
 --FILE--
 <?php
-$options = new CairoFontOptions();
+$options = new Cairo\Font\Options();
 var_dump($options);
 
 /* Wrong number args */
 try {
-    new CairoFontOptions('foo');
+    new Cairo\Font\Options('foo');
     trigger_error('__construct requires no args');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
-CairoFontOptions::__construct() expects exactly 0 parameters, 1 given
+Cairo\Font\Options::__construct() expects exactly 0 parameters, 1 given

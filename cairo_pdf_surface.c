@@ -76,7 +76,7 @@ PHP_METHOD(CairoPdfSurface, __construct)
 		} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
 			php_stream_from_zval(stream, &stream_zval);	
 		} else {
-			zend_throw_exception(cairo_ce_cairoexception, "CairoPdfSurface::__construct() expects parameter 1 to be null, a string, or a stream resource", 0 TSRMLS_CC);
+			zend_throw_exception(cairo_ce_cairoexception, "Cairo\\Surface\\PDF::__construct() expects parameter 1 to be null, a string, or a stream resource", 0 TSRMLS_CC);
 			return;
 		}
 
@@ -182,8 +182,8 @@ PHP_MINIT_FUNCTION(cairo_pdf_surface)
 {
 	zend_class_entry ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoPdfSurface", cairo_pdf_surface_methods);
-	cairo_ce_cairopdfsurface = zend_register_internal_class_ex(&ce, cairo_ce_cairosurface, "CairoSurface" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(ce, PHP_CAIRO_SURFACE_NS, "PDF", cairo_pdf_surface_methods);
+	cairo_ce_cairopdfsurface = zend_register_internal_class_ex(&ce, cairo_ce_cairosurface, PHP_CAIRO_SURFACE_NS TSRMLS_CC);
 	cairo_ce_cairopdfsurface->create_object = cairo_surface_object_new;
 
 	return SUCCESS;

@@ -21,11 +21,11 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_pattern_get_linear_points();
 cairo_pattern_get_linear_points($pattern, 1);
 
-// arg type is CairoPattern
+// arg type is Cairo\Pattern
 cairo_pattern_get_linear_points(1);
 ?>
 --EXPECTF--
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 array(4) {
   ["x0"]=>
@@ -41,6 +41,6 @@ array(4) {
 Warning: cairo_pattern_get_linear_points() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_pattern_get_linear_points() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_linear_points() must be an instance of CairoLinearGradient, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_linear_points() must be an instance of Cairo\Pattern\Gradient\Linear, integer given
 
-Warning: cairo_pattern_get_linear_points() expects parameter 1 to be CairoLinearGradient, integer given in %s on line %d
+Warning: cairo_pattern_get_linear_points() expects parameter 1 to be Cairo\Pattern\Gradient\Linear, integer given in %s on line %d

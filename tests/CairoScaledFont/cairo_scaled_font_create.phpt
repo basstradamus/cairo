@@ -29,16 +29,16 @@ cairo_scaled_font_create($fontface, $matrix1);
 cairo_scaled_font_create($fontface, $matrix1, $matrix2);
 cairo_scaled_font_create($fontface, $matrix1, $matrix2, $options, 1);
 
-// check arg types, should be CairoFontFace, CairoMatrix, CairoMatrix, CairoFontOptions
+// check arg types, should be Cairo\FontFace, Cairo\Matrix, Cairo\Matrix, Cairo\Font\Options
 cairo_scaled_font_create(array(), $matrix1, $matrix2, $options);
 cairo_scaled_font_create($fontface, array(), $matrix2, $options);
 cairo_scaled_font_create($fontface, $matrix1, array(), $options);
 cairo_scaled_font_create($fontface, $matrix1, $matrix2, array());
 ?>
 --EXPECTF--
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
-object(CairoScaledFont)#%d (0) {
+object(Cairo\Font\Scaled)#%d (0) {
 }
 
 Warning: cairo_scaled_font_create() expects exactly 4 parameters, 0 given in %s on line %d
@@ -50,15 +50,15 @@ Warning: cairo_scaled_font_create() expects exactly 4 parameters, 2 given in %s 
 Warning: cairo_scaled_font_create() expects exactly 4 parameters, 3 given in %s on line %d
 
 Warning: cairo_scaled_font_create() expects exactly 4 parameters, 5 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_scaled_font_create() must be an instance of CairoFontFace, array given
+CAUGHT ERROR: Argument 1 passed to cairo_scaled_font_create() must be an instance of Cairo\FontFace, array given
 
-Warning: cairo_scaled_font_create() expects parameter 1 to be CairoFontFace, array given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_scaled_font_create() must be an instance of CairoMatrix, array given
+Warning: cairo_scaled_font_create() expects parameter 1 to be Cairo\FontFace, array given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_scaled_font_create() must be an instance of Cairo\Matrix, array given
 
-Warning: cairo_scaled_font_create() expects parameter 2 to be CairoMatrix, array given in %s on line %d
-CAUGHT ERROR: Argument 3 passed to cairo_scaled_font_create() must be an instance of CairoMatrix, array given
+Warning: cairo_scaled_font_create() expects parameter 2 to be Cairo\Matrix, array given in %s on line %d
+CAUGHT ERROR: Argument 3 passed to cairo_scaled_font_create() must be an instance of Cairo\Matrix, array given
 
-Warning: cairo_scaled_font_create() expects parameter 3 to be CairoMatrix, array given in %s on line %d
-CAUGHT ERROR: Argument 4 passed to cairo_scaled_font_create() must be an instance of CairoFontOptions, array given
+Warning: cairo_scaled_font_create() expects parameter 3 to be Cairo\Matrix, array given in %s on line %d
+CAUGHT ERROR: Argument 4 passed to cairo_scaled_font_create() must be an instance of Cairo\Font\Options, array given
 
-Warning: cairo_scaled_font_create() expects parameter 4 to be CairoFontOptions, array given in %s on line %d
+Warning: cairo_scaled_font_create() expects parameter 4 to be Cairo\Font\Options, array given in %s on line %d

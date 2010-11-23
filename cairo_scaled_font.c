@@ -538,7 +538,7 @@ PHP_MINIT_FUNCTION(cairo_scaled_font)
 {
 	zend_class_entry ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoScaledFont", cairo_scaled_font_methods);
+	INIT_NS_CLASS_ENTRY(ce, PHP_CAIRO_FONT_NS, "Scaled", cairo_scaled_font_methods);
 	cairo_ce_cairoscaledfont = zend_register_internal_class(&ce TSRMLS_CC);
 	cairo_ce_cairoscaledfont->create_object = cairo_scaled_font_object_new;
 

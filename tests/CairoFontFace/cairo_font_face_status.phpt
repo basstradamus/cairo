@@ -28,7 +28,7 @@ cairo_font_face_status($fontface, 1);
 cairo_font_face_status(1);
 ?>
 --EXPECTF--
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
 int(0)
 bool(true)
@@ -36,6 +36,6 @@ bool(true)
 Warning: cairo_font_face_status() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_font_face_status() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_font_face_status() must be an instance of CairoFontFace, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_font_face_status() must be an instance of Cairo\FontFace, integer given
 
-Warning: cairo_font_face_status() expects parameter 1 to be CairoFontFace, integer given in %s on line %d
+Warning: cairo_font_face_status() expects parameter 1 to be Cairo\FontFace, integer given in %s on line %d

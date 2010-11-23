@@ -31,17 +31,17 @@ cairo_get_group_target(1);
 
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 bool(true)
 
 Warning: cairo_get_group_target() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_get_group_target() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_get_group_target() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_get_group_target() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_get_group_target() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_get_group_target() expects parameter 1 to be Cairo\Context, integer given in %s on line %d

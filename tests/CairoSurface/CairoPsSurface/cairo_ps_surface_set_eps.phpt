@@ -29,7 +29,7 @@ cairo_ps_surface_set_eps(1, 1);
 cairo_ps_surface_set_eps($surface, array());
 ?>
 --EXPECTF--
-object(CairoPsSurface)#%d (0) {
+object(Cairo\Surface\PS)#%d (0) {
 }
 
 Warning: cairo_ps_surface_set_eps() expects exactly 2 parameters, 0 given in %s on line %d
@@ -37,8 +37,8 @@ Warning: cairo_ps_surface_set_eps() expects exactly 2 parameters, 0 given in %s 
 Warning: cairo_ps_surface_set_eps() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_ps_surface_set_eps() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_ps_surface_set_eps() must be an instance of CairoPsSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_ps_surface_set_eps() must be an instance of Cairo\Surface\PS, integer given
 
-Warning: cairo_ps_surface_set_eps() expects parameter 1 to be CairoPsSurface, integer given in %s on line %d
+Warning: cairo_ps_surface_set_eps() expects parameter 1 to be Cairo\Surface\PS, integer given in %s on line %d
 
 Warning: cairo_ps_surface_set_eps() expects parameter 2 to be boolean, array given in %s on line %d

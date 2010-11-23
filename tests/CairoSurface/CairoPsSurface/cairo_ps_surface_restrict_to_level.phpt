@@ -29,7 +29,7 @@ cairo_ps_surface_restrict_to_level(1, 1);
 cairo_ps_surface_restrict_to_level($surface, array());
 ?>
 --EXPECTF--
-object(CairoPsSurface)#%d (0) {
+object(Cairo\Surface\PS)#%d (0) {
 }
 
 Warning: cairo_ps_surface_restrict_to_level() expects exactly 2 parameters, 0 given in %s on line %d
@@ -37,8 +37,8 @@ Warning: cairo_ps_surface_restrict_to_level() expects exactly 2 parameters, 0 gi
 Warning: cairo_ps_surface_restrict_to_level() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_ps_surface_restrict_to_level() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_ps_surface_restrict_to_level() must be an instance of CairoPsSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_ps_surface_restrict_to_level() must be an instance of Cairo\Surface\PS, integer given
 
-Warning: cairo_ps_surface_restrict_to_level() expects parameter 1 to be CairoPsSurface, integer given in %s on line %d
+Warning: cairo_ps_surface_restrict_to_level() expects parameter 1 to be Cairo\Surface\PS, integer given in %s on line %d
 
 Warning: cairo_ps_surface_restrict_to_level() expects parameter 2 to be long, array given in %s on line %d

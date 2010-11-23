@@ -25,13 +25,13 @@ $pattern = cairo_get_source(new stdClass);
 var_dump($pattern);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
-CAUGHT ERROR: Argument 1 passed to cairo_get_source() must be an instance of CairoContext, instance of stdClass given
+CAUGHT ERROR: Argument 1 passed to cairo_get_source() must be an instance of Cairo\Context, instance of stdClass given
 
-Warning: cairo_get_source() expects parameter 1 to be CairoContext, object given in %s on line %d
+Warning: cairo_get_source() expects parameter 1 to be Cairo\Context, object given in %s on line %d
 NULL

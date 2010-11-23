@@ -32,9 +32,9 @@ cairo_set_dash($context, 1, 3);
 cairo_set_dash($context, array(1, 2,3), array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 array(2) {
   ["dashes"]=>
@@ -55,9 +55,9 @@ Warning: cairo_set_dash() expects at least 2 parameters, 0 given in %s on line %
 Warning: cairo_set_dash() expects at least 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_set_dash() expects at most 3 parameters, 4 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_dash() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_set_dash() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_set_dash() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_set_dash() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
 CAUGHT ERROR: Argument 2 passed to cairo_set_dash() must be an array, integer given
 
 Warning: cairo_set_dash() expects parameter 2 to be array, integer given in %s on line %d

@@ -23,12 +23,12 @@ cairo_pattern_get_color_stop_rgba();
 cairo_pattern_get_color_stop_rgba($pattern);
 cairo_pattern_get_color_stop_rgba($pattern, 1, 1);
 
-// arg types are CairoPattern, int
+// arg types are Cairo\Pattern, int
 cairo_pattern_get_color_stop_rgba(1, 1);
 cairo_pattern_get_color_stop_rgba($pattern, array());
 ?>
 --EXPECTF--
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 array(4) {
   ["red"]=>
@@ -46,8 +46,8 @@ Warning: cairo_pattern_get_color_stop_rgba() expects exactly 2 parameters, 0 giv
 Warning: cairo_pattern_get_color_stop_rgba() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_pattern_get_color_stop_rgba() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_color_stop_rgba() must be an instance of CairoGradientPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_color_stop_rgba() must be an instance of Cairo\Pattern\Gradient, integer given
 
-Warning: cairo_pattern_get_color_stop_rgba() expects parameter 1 to be CairoGradientPattern, integer given in %s on line %d
+Warning: cairo_pattern_get_color_stop_rgba() expects parameter 1 to be Cairo\Pattern\Gradient, integer given in %s on line %d
 
 Warning: cairo_pattern_get_color_stop_rgba() expects parameter 2 to be long, array given in %s on line %d

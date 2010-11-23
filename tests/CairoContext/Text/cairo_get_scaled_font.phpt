@@ -35,24 +35,24 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_get_scaled_font();
 cairo_get_scaled_font($context, 1);
 
-// check arg types, should be CairoContext
+// check arg types, should be Cairo\Context
 cairo_get_scaled_font(array());
 
 //die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoScaledFont)#%d (0) {
+object(Cairo\Font\Scaled)#%d (0) {
 }
-object(CairoScaledFont)#%d (0) {
+object(Cairo\Font\Scaled)#%d (0) {
 }
 
 Warning: cairo_get_scaled_font() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_get_scaled_font() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_get_scaled_font() must be an instance of CairoContext, array given
+CAUGHT ERROR: Argument 1 passed to cairo_get_scaled_font() must be an instance of Cairo\Context, array given
 
-Warning: cairo_get_scaled_font() expects parameter 1 to be CairoContext, array given in %s on line %d
+Warning: cairo_get_scaled_font() expects parameter 1 to be Cairo\Context, array given in %s on line %d

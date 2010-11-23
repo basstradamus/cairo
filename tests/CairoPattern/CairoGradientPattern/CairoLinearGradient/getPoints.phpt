@@ -1,12 +1,12 @@
 --TEST--
-CairoLinearGradient->getPoints() method
+Cairo\Pattern\Gradient\Linear->getPoints() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 ?>
 --FILE--
 <?php
-$pattern = new CairoLinearGradient(1,2,3,4);
+$pattern = new Cairo\Pattern\Gradient\Linear(1,2,3,4);
 var_dump($pattern);
 
 var_dump($pattern->getPoints());
@@ -15,12 +15,12 @@ var_dump($pattern->getPoints());
 try {
     $pattern->getPoints(1);
     trigger_error('getPoints with too many args');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 array(4) {
   ["x0"]=>
@@ -32,4 +32,4 @@ array(4) {
   ["y1"]=>
   float(4)
 }
-CairoLinearGradient::getPoints() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Gradient\Linear::getPoints() expects exactly 0 parameters, 1 given

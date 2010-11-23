@@ -30,7 +30,7 @@ cairo_pdf_surface_set_size($surface, array(), 1);
 cairo_pdf_surface_set_size($surface, 1, array());
 ?>
 --EXPECTF--
-object(CairoPdfSurface)#%d (0) {
+object(Cairo\Surface\PDF)#%d (0) {
 }
 
 Warning: cairo_pdf_surface_set_size() expects exactly 3 parameters, 0 given in %s on line %d
@@ -40,9 +40,9 @@ Warning: cairo_pdf_surface_set_size() expects exactly 3 parameters, 1 given in %
 Warning: cairo_pdf_surface_set_size() expects exactly 3 parameters, 2 given in %s on line %d
 
 Warning: cairo_pdf_surface_set_size() expects exactly 3 parameters, 4 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pdf_surface_set_size() must be an instance of CairoPdfSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pdf_surface_set_size() must be an instance of Cairo\Surface\PDF, integer given
 
-Warning: cairo_pdf_surface_set_size() expects parameter 1 to be CairoPdfSurface, integer given in %s on line %d
+Warning: cairo_pdf_surface_set_size() expects parameter 1 to be Cairo\Surface\PDF, integer given in %s on line %d
 
 Warning: cairo_pdf_surface_set_size() expects parameter 2 to be double, array given in %s on line %d
 

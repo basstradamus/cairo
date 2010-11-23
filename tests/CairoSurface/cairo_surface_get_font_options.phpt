@@ -25,14 +25,14 @@ cairo_surface_get_font_options($surface, 1);
 cairo_surface_get_font_options(1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
 
 Warning: cairo_surface_get_font_options() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_surface_get_font_options() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_surface_get_font_options() must be an instance of CairoSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_surface_get_font_options() must be an instance of Cairo\Surface, integer given
 
-Warning: cairo_surface_get_font_options() expects parameter 1 to be CairoSurface, integer given in %s on line %d
+Warning: cairo_surface_get_font_options() expects parameter 1 to be Cairo\Surface, integer given in %s on line %d

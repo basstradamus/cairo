@@ -33,11 +33,11 @@ cairo_mask(1, $pattern);
 cairo_mask($context, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
 
 Warning: cairo_mask() expects exactly 2 parameters, 0 given in %s on line %d
@@ -45,9 +45,9 @@ Warning: cairo_mask() expects exactly 2 parameters, 0 given in %s on line %d
 Warning: cairo_mask() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_mask() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_mask() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_mask() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_mask() expects parameter 1 to be CairoContext, integer given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_mask() must be an instance of CairoPattern, array given
+Warning: cairo_mask() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_mask() must be an instance of Cairo\Pattern, array given
 
-Warning: cairo_mask() expects parameter 2 to be CairoPattern, array given in %s on line %d
+Warning: cairo_mask() expects parameter 2 to be Cairo\Pattern, array given in %s on line %d

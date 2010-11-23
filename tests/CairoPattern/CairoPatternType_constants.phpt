@@ -1,5 +1,5 @@
 --TEST--
-CairoPatternType class constants
+Cairo\Pattern\Type class constants
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -14,7 +14,7 @@ $constants = array(
 	);
 
 foreach($constants as $name) {
-	var_dump(defined('CairoPatternType::' . $name));
+	var_dump(defined('Cairo\Pattern\Type::' . $name));
 }
 ?>
 --EXPECT--

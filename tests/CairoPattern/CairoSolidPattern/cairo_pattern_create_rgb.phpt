@@ -32,7 +32,7 @@ cairo_pattern_create_rgb(1, array(), 1);
 cairo_pattern_create_rgb(1, 1, array());
 ?>
 --EXPECTF--
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
 array(4) {
   ["red"]=>

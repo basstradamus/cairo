@@ -37,9 +37,9 @@ cairo_set_font_size($context, array());
 die;
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 
 Warning: cairo_set_font_size() expects exactly 2 parameters, 0 given in %s on line %d
@@ -47,8 +47,8 @@ Warning: cairo_set_font_size() expects exactly 2 parameters, 0 given in %s on li
 Warning: cairo_set_font_size() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_set_font_size() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_font_size() must be an instance of CairoContext, array given
+CAUGHT ERROR: Argument 1 passed to cairo_set_font_size() must be an instance of Cairo\Context, array given
 
-Warning: cairo_set_font_size() expects parameter 1 to be CairoContext, array given in %s on line %d
+Warning: cairo_set_font_size() expects parameter 1 to be Cairo\Context, array given in %s on line %d
 
 Warning: cairo_set_font_size() expects parameter 2 to be double, array given in %s on line %d

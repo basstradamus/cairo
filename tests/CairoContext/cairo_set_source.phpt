@@ -43,11 +43,11 @@ cairo_set_source($context, 1);
 die;
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
 array(4) {
   ["red"]=>
@@ -59,7 +59,7 @@ array(4) {
   ["alpha"]=>
   float(1)
 }
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
 array(4) {
   ["red"]=>
@@ -77,9 +77,9 @@ Warning: cairo_set_source() expects exactly 2 parameters, 0 given in %s on line 
 Warning: cairo_set_source() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_set_source() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_source() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_set_source() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_set_source() expects parameter 1 to be CairoContext, integer given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_set_source() must be an instance of CairoPattern, integer given
+Warning: cairo_set_source() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_set_source() must be an instance of Cairo\Pattern, integer given
 
-Warning: cairo_set_source() expects parameter 2 to be CairoPattern, integer given in %s on line %d
+Warning: cairo_set_source() expects parameter 2 to be Cairo\Pattern, integer given in %s on line %d

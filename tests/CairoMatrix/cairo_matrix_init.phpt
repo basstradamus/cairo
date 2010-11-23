@@ -21,7 +21,7 @@ cairo_matrix_init(1, 1, 1, 1, array(), 1);
 cairo_matrix_init(1, 1, 1, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 
 Warning: cairo_matrix_init() expects at most 6 parameters, 7 given in %s on line %d

@@ -466,7 +466,7 @@ PHP_MINIT_FUNCTION(cairo_font_options)
 	zend_class_entry hintstyle_ce;
 	zend_class_entry hintmetrics_ce;
 
-	INIT_CLASS_ENTRY(fontoptions_ce, "CairoFontOptions", cairo_font_options_methods);
+	INIT_NS_CLASS_ENTRY(fontoptions_ce, PHP_CAIRO_FONT_NS, "Options", cairo_font_options_methods);
 	cairo_ce_cairofontoptions = zend_register_internal_class(&fontoptions_ce TSRMLS_CC);
 	cairo_ce_cairofontoptions->create_object = cairo_font_options_object_new;
 
@@ -476,7 +476,7 @@ PHP_MINIT_FUNCTION(cairo_font_options)
 
 	PHP_CAIRO_CTOR_WRAPPER_FUNC_INIT(cairo_ce_cairofontoptions);
 
-	INIT_CLASS_ENTRY(hintstyle_ce, "CairoHintStyle", NULL);
+	INIT_NS_CLASS_ENTRY(hintstyle_ce, PHP_CAIRO_HINT_NS, "Style", NULL);
     cairo_ce_hintstyle = zend_register_internal_class(&hintstyle_ce TSRMLS_CC);
     cairo_ce_hintstyle->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -490,7 +490,7 @@ PHP_MINIT_FUNCTION(cairo_font_options)
     REGISTER_CAIRO_HINTSTYLE_LONG_CONST("STYLE_MEDIUM", CAIRO_HINT_STYLE_MEDIUM);
     REGISTER_CAIRO_HINTSTYLE_LONG_CONST("STYLE_FULL", CAIRO_HINT_STYLE_FULL);
 
-    INIT_CLASS_ENTRY(hintmetrics_ce, "CairoHintMetrics", NULL);
+    INIT_NS_CLASS_ENTRY(hintmetrics_ce, PHP_CAIRO_HINT_NS, "Metrics", NULL);
     cairo_ce_hintmetrics = zend_register_internal_class(&hintmetrics_ce TSRMLS_CC);
     cairo_ce_hintmetrics->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

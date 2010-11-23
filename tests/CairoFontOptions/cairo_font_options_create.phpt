@@ -13,7 +13,7 @@ var_dump($options);
 cairo_font_options_create(1);
 ?>
 --EXPECTF--
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
 
 Warning: cairo_font_options_create() expects exactly 0 parameters, 1 given in %s on line %d

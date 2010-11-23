@@ -31,7 +31,7 @@ cairo_image_surface_create(CAIRO_FORMAT_ARGB32, array(), 1);
 cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 
 Warning: cairo_image_surface_create() expects exactly 3 parameters, 0 given in %s on line %d

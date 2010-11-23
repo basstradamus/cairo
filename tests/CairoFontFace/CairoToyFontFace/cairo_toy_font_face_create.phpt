@@ -36,18 +36,18 @@ $c = cairo_toy_font_face_create(array());
 var_dump($c);
 ?>
 --EXPECTF--
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
 
 Warning: cairo_toy_font_face_create() expects at least 1 parameter, 0 given in %s on line %d
 NULL
-object(CairoToyFontFace)#2 (0) {
+object(Cairo\FontFace\Toy)#2 (0) {
 }
 
 Warning: cairo_toy_font_face_create() expects parameter 1 to be string, array given in %s on line %d

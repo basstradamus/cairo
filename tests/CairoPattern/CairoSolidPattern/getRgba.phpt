@@ -1,5 +1,5 @@
 --TEST--
-CairoSolidPattern->getRgba() method
+Cairo\Pattern\Solid->getRgba() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -11,7 +11,7 @@ $green = 0.6;
 $blue = 0.5;
 $alpha = 0.7;
 
-$pattern = new CairoSolidPattern($red, $green, $blue, $alpha);
+$pattern = new Cairo\Pattern\Solid($red, $green, $blue, $alpha);
 var_dump($pattern);
 
 $values =$pattern->getRgba();
@@ -25,12 +25,12 @@ var_dump($alpha === $values['alpha']);
 try {
     $pattern->getRgba(1);
     trigger_error('getRgba with too many args');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
 array(4) {
   ["red"]=>
@@ -46,4 +46,4 @@ bool(true)
 bool(true)
 bool(true)
 bool(true)
-CairoSolidPattern::getRgba() expects exactly 0 parameters, 1 given
+Cairo\Pattern\Solid::getRgba() expects exactly 0 parameters, 1 given

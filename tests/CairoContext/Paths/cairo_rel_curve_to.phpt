@@ -41,9 +41,9 @@ cairo_rel_curve_to($context, 1, 1, 1, 1, array(), 1);
 cairo_rel_curve_to($context, 1, 1, 1, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 
 Warning: cairo_rel_curve_to() expects exactly 7 parameters, 0 given in %s on line %d
@@ -61,9 +61,9 @@ Warning: cairo_rel_curve_to() expects exactly 7 parameters, 5 given in %s on lin
 Warning: cairo_rel_curve_to() expects exactly 7 parameters, 6 given in %s on line %d
 
 Warning: cairo_rel_curve_to() expects exactly 7 parameters, 8 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_rel_curve_to() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_rel_curve_to() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_rel_curve_to() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_rel_curve_to() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
 
 Warning: cairo_rel_curve_to() expects parameter 2 to be double, array given in %s on line %d
 

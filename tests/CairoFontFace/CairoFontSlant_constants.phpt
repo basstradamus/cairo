@@ -1,5 +1,5 @@
 --TEST--
-CairoFontSlant class constants
+Cairo\Font\Slant class constants
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -13,9 +13,9 @@ $constants = array(
 	);
 $error = false;
 foreach($constants as $name) {
-	if (!defined('CairoFontSlant::' . $name)) {
+	if (!defined('Cairo\Font\Slant::' . $name)) {
 		$error = true;
-		echo 'Missing Constant: CairoFontSlant::' . $name . "\n";
+		echo 'Missing Constant: Cairo\Font\Slant::' . $name . "\n";
 	}
 }
 if (!$error) {

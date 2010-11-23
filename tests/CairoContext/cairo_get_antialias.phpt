@@ -24,19 +24,19 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_get_antialias();
 cairo_get_antialias($context, 1);
 
-// check arg types, should be CairoSurface
+// check arg types, should be Cairo\Surface
 cairo_get_antialias(1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 int(0)
 
 Warning: cairo_get_antialias() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_get_antialias() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_get_antialias() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_get_antialias() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_get_antialias() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_get_antialias() expects parameter 1 to be Cairo\Context, integer given in %s on line %d

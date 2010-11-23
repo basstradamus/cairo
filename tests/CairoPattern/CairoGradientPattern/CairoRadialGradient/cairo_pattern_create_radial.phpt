@@ -27,7 +27,7 @@ cairo_pattern_create_radial(1, 1, 1, 1, array(), 1);
 cairo_pattern_create_radial(1, 1, 1, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoRadialGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Radial)#%d (0) {
 }
 
 Warning: cairo_pattern_create_radial() expects exactly 6 parameters, 0 given in %s on line %d

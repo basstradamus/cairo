@@ -31,9 +31,9 @@ cairo_set_fill_rule(1, 1);
 cairo_set_fill_rule($context, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 int(1)
 
@@ -42,8 +42,8 @@ Warning: cairo_set_fill_rule() expects exactly 2 parameters, 0 given in %s on li
 Warning: cairo_set_fill_rule() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_set_fill_rule() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_fill_rule() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_set_fill_rule() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_set_fill_rule() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_set_fill_rule() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
 
 Warning: cairo_set_fill_rule() expects parameter 2 to be long, array given in %s on line %d

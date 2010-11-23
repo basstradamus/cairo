@@ -33,9 +33,9 @@ cairo_scaled_font_text_extents(1, 'foobar');
 cairo_scaled_font_text_extents($scaledfont, array());
 ?>
 --EXPECTF--
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
-object(CairoScaledFont)#%d (0) {
+object(Cairo\Font\Scaled)#%d (0) {
 }
 array(6) {
   ["x_bearing"]=>
@@ -55,8 +55,8 @@ array(6) {
 Warning: cairo_scaled_font_text_extents() expects exactly 2 parameters, 0 given in %s on line %d
 
 Warning: cairo_scaled_font_text_extents() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_scaled_font_text_extents() must be an instance of CairoScaledFont, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_scaled_font_text_extents() must be an instance of Cairo\Font\Scaled, integer given
 
-Warning: cairo_scaled_font_text_extents() expects parameter 1 to be CairoScaledFont, integer given in %s on line %d
+Warning: cairo_scaled_font_text_extents() expects parameter 1 to be Cairo\Font\Scaled, integer given in %s on line %d
 
 Warning: cairo_scaled_font_text_extents() expects parameter 2 to be string, array given in %s on line %d

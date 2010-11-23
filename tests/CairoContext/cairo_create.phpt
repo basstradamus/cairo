@@ -22,18 +22,18 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_create();
 cairo_create($surface, 1);
 
-// check arg types, should be CairoSurface
+// check arg types, should be Cairo\Surface
 cairo_create(1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 
 Warning: cairo_create() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_create() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_create() must be an instance of CairoSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_create() must be an instance of Cairo\Surface, integer given
 
-Warning: cairo_create() expects parameter 1 to be CairoSurface, integer given in %s on line %d
+Warning: cairo_create() expects parameter 1 to be Cairo\Surface, integer given in %s on line %d

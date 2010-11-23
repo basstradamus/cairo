@@ -31,9 +31,9 @@ cairo_status($context, 1);
 cairo_status(1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 int(0)
 bool(true)
@@ -41,6 +41,6 @@ bool(true)
 Warning: cairo_status() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_status() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_status() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_status() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_status() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_status() expects parameter 1 to be Cairo\Context, integer given in %s on line %d

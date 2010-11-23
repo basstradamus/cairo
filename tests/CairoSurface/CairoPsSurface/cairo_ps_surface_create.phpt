@@ -34,11 +34,11 @@ unlink(dirname(__FILE__) . '/nametest.ps');
 unlink(dirname(__FILE__) . '/streamtest.ps');
 ?>
 --EXPECTF--
-object(CairoPsSurface)#%d (0) {
+object(Cairo\Surface\PS)#%d (0) {
 }
-object(CairoPsSurface)#%d (0) {
+object(Cairo\Surface\PS)#%d (0) {
 }
-object(CairoPsSurface)#%d (0) {
+object(Cairo\Surface\PS)#%d (0) {
 }
 
 Warning: cairo_ps_surface_create() expects exactly 3 parameters, 0 given in %s on line %d

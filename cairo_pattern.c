@@ -103,7 +103,7 @@ ZEND_END_ARG_INFO()
    CairoPattern CANNOT be extended in userspace, this will throw an exception on use */
 PHP_METHOD(CairoPattern, __construct)
 {
-	zend_throw_exception(cairo_ce_cairoexception, "CairoPattern cannot be constructed", 0 TSRMLS_CC);
+	zend_throw_exception(cairo_ce_cairoexception, "Cairo\\Pattern cannot be constructed", 0 TSRMLS_CC);
 }
 /* }}} */
 
@@ -936,33 +936,33 @@ PHP_MINIT_FUNCTION(cairo_pattern)
 {
 	zend_class_entry ce, gradient_ce, solid_ce, surface_ce, linear_ce, radial_ce, pattern_ce, extend_ce, filter_ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoPattern", cairo_pattern_methods);
+	INIT_NS_CLASS_ENTRY(ce, "Cairo", "Pattern", cairo_pattern_methods);
 	cairo_ce_cairopattern = zend_register_internal_class(&ce TSRMLS_CC);
 	cairo_ce_cairopattern->create_object = cairo_pattern_object_new;
 	cairo_ce_cairopattern->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS;
 
-	INIT_CLASS_ENTRY(gradient_ce, "CairoGradientPattern", cairo_gradientpattern_methods);
-	cairo_ce_cairogradientpattern = zend_register_internal_class_ex(&gradient_ce, cairo_ce_cairopattern, "CairoPattern" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(gradient_ce, PHP_CAIRO_PATTERN_NS, "Gradient", cairo_gradientpattern_methods);
+	cairo_ce_cairogradientpattern = zend_register_internal_class_ex(&gradient_ce, cairo_ce_cairopattern, PHP_CAIRO_PATTERN_NS);
 	cairo_ce_cairogradientpattern->create_object = cairo_pattern_object_new;
 	cairo_ce_cairogradientpattern->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS;
 
-	INIT_CLASS_ENTRY(solid_ce, "CairoSolidPattern", cairo_solidpattern_methods);
-	cairo_ce_cairosolidpattern = zend_register_internal_class_ex(&solid_ce, cairo_ce_cairopattern, "CairoPattern" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(solid_ce, PHP_CAIRO_PATTERN_NS, "Solid", cairo_solidpattern_methods);
+	cairo_ce_cairosolidpattern = zend_register_internal_class_ex(&solid_ce, cairo_ce_cairopattern, PHP_CAIRO_PATTERN_NS);
 	cairo_ce_cairosolidpattern->create_object = cairo_pattern_object_new;
 
-	INIT_CLASS_ENTRY(surface_ce, "CairoSurfacePattern", cairo_surfacepattern_methods);
-	cairo_ce_cairosurfacepattern = zend_register_internal_class_ex(&surface_ce, cairo_ce_cairopattern, "CairoPattern" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(surface_ce, PHP_CAIRO_PATTERN_NS, "Surface", cairo_surfacepattern_methods);
+	cairo_ce_cairosurfacepattern = zend_register_internal_class_ex(&surface_ce, cairo_ce_cairopattern, PHP_CAIRO_PATTERN_NS);
 	cairo_ce_cairosurfacepattern->create_object = cairo_pattern_object_new;
 
-	INIT_CLASS_ENTRY(linear_ce, "CairoLinearGradient", cairo_lineargradient_methods);
-	cairo_ce_cairolineargradient = zend_register_internal_class_ex(&linear_ce, cairo_ce_cairogradientpattern, "CairoGradientPattern" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(linear_ce, PHP_CAIRO_GRADIENT_PATTERN_NS, "Linear", cairo_lineargradient_methods);
+	cairo_ce_cairolineargradient = zend_register_internal_class_ex(&linear_ce, cairo_ce_cairogradientpattern, PHP_CAIRO_GRADIENT_PATTERN_NS TSRMLS_CC);
 	cairo_ce_cairolineargradient->create_object = cairo_pattern_object_new;
 
-	INIT_CLASS_ENTRY(radial_ce, "CairoRadialGradient", cairo_radialgradient_methods);
-	cairo_ce_cairoradialgradient = zend_register_internal_class_ex(&radial_ce, cairo_ce_cairogradientpattern, "CairoGradientPattern" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(radial_ce, PHP_CAIRO_GRADIENT_PATTERN_NS, "Radial", cairo_radialgradient_methods);
+	cairo_ce_cairoradialgradient = zend_register_internal_class_ex(&radial_ce, cairo_ce_cairogradientpattern, PHP_CAIRO_GRADIENT_PATTERN_NS TSRMLS_CC);
 	cairo_ce_cairoradialgradient->create_object = cairo_pattern_object_new;
 
-	INIT_CLASS_ENTRY(pattern_ce, "CairoPatternType", NULL);
+	INIT_NS_CLASS_ENTRY(pattern_ce, PHP_CAIRO_PATTERN_NS, "Type", NULL);
 	cairo_ce_cairopatterntype = zend_register_internal_class(&pattern_ce TSRMLS_CC);
 	cairo_ce_cairopatterntype->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -975,7 +975,7 @@ PHP_MINIT_FUNCTION(cairo_pattern)
 	REGISTER_CAIRO_TYPE_LONG_CONST("LINEAR", CAIRO_PATTERN_TYPE_LINEAR);
 	REGISTER_CAIRO_TYPE_LONG_CONST("RADIAL", CAIRO_PATTERN_TYPE_RADIAL);
 
-	INIT_CLASS_ENTRY(extend_ce, "CairoExtend", NULL);
+	INIT_NS_CLASS_ENTRY(extend_ce, "Cairo", "Extend", NULL);
 	cairo_ce_cairoextend = zend_register_internal_class(&extend_ce TSRMLS_CC);
 	cairo_ce_cairoextend->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -988,7 +988,7 @@ PHP_MINIT_FUNCTION(cairo_pattern)
 	REGISTER_CAIRO_EXTEND_LONG_CONST("REFLECT", CAIRO_EXTEND_REFLECT);
 	REGISTER_CAIRO_EXTEND_LONG_CONST("PAD", CAIRO_EXTEND_PAD);
 
-	INIT_CLASS_ENTRY(filter_ce, "CairoFilter", NULL);
+	INIT_NS_CLASS_ENTRY(filter_ce, "Cairo", "Filter", NULL);
 	cairo_ce_cairofilter = zend_register_internal_class(&filter_ce TSRMLS_CC);
 	cairo_ce_cairofilter->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

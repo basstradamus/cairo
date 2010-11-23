@@ -27,17 +27,17 @@ var_dump($extend == CAIRO_EXTEND_PAD);
 cairo_pattern_get_extend();
 cairo_pattern_get_extend($pattern, 1);
 
-// arg types is CairoPattern
+// arg types is Cairo\Pattern
 cairo_pattern_get_extend(1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoSurfacePattern)#%d (0) {
+object(Cairo\Pattern\Surface)#%d (0) {
 }
 int(0)
 bool(true)
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 int(3)
 bool(true)
@@ -46,4 +46,4 @@ Warning: cairo_pattern_get_extend() expects exactly 1 parameter, 0 given in %s o
 
 Warning: cairo_pattern_get_extend() expects exactly 1 parameter, 2 given in %s on line %d
 
-Warning: cairo_pattern_get_extend() expects parameter 1 to be CairoSurfacePattern, integer given in %s on line %d
+Warning: cairo_pattern_get_extend() expects parameter 1 to be Cairo\Pattern\Surface, integer given in %s on line %d

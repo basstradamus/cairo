@@ -34,11 +34,11 @@ unlink(dirname(__FILE__) . '/nametest.pdf');
 unlink(dirname(__FILE__) . '/streamtest.pdf');
 ?>
 --EXPECTF--
-object(CairoPdfSurface)#%d (0) {
+object(Cairo\Surface\PDF)#%d (0) {
 }
-object(CairoPdfSurface)#%d (0) {
+object(Cairo\Surface\PDF)#%d (0) {
 }
-object(CairoPdfSurface)#%d (0) {
+object(Cairo\Surface\PDF)#%d (0) {
 }
 
 Warning: cairo_pdf_surface_create() expects exactly 3 parameters, 0 given in %s on line %d

@@ -34,9 +34,9 @@ $c = cairo_ft_font_face_create(dirname(__FILE__) . '/broken.ttf');
 var_dump($c);
 ?>
 --EXPECTF--
-object(CairoFtFontFace)#1 (0) {
+object(Cairo\FontFace\FreeType)#1 (0) {
 }
-object(CairoFtFontFace)#2 (0) {
+object(Cairo\FontFace\FreeType)#2 (0) {
 }
 
 Warning: cairo_ft_font_face_create() expects at least 1 parameter, 0 given in %s on line 13

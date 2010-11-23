@@ -30,11 +30,11 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_pattern_get_color_stop_count();
 cairo_pattern_get_color_stop_count($pattern, 1);
 
-// arg types is CairoPattern
+// arg types is Cairo\Pattern
 cairo_pattern_get_color_stop_count(1);
 ?>
 --EXPECTF--
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 int(0)
 int(3)
@@ -42,6 +42,6 @@ int(3)
 Warning: cairo_pattern_get_color_stop_count() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_pattern_get_color_stop_count() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_color_stop_count() must be an instance of CairoGradientPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_color_stop_count() must be an instance of Cairo\Pattern\Gradient, integer given
 
-Warning: cairo_pattern_get_color_stop_count() expects parameter 1 to be CairoGradientPattern, integer given in %s on line %d
+Warning: cairo_pattern_get_color_stop_count() expects parameter 1 to be Cairo\Pattern\Gradient, integer given in %s on line %d

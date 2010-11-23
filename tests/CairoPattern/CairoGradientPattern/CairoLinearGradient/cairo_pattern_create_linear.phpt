@@ -23,7 +23,7 @@ cairo_pattern_create_linear(1, 1, array(), 1);
 cairo_pattern_create_linear(1, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 
 Warning: cairo_pattern_create_linear() expects exactly 4 parameters, 0 given in %s on line %d

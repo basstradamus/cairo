@@ -34,11 +34,11 @@ unlink(dirname(__FILE__) . '/nametest.svg');
 unlink(dirname(__FILE__) . '/streamtest.svg');
 ?>
 --EXPECTF--
-object(CairoSvgSurface)#%d (0) {
+object(Cairo\Surface\SVG)#%d (0) {
 }
-object(CairoSvgSurface)#%d (0) {
+object(Cairo\Surface\SVG)#%d (0) {
 }
-object(CairoSvgSurface)#%d (0) {
+object(Cairo\Surface\SVG)#%d (0) {
 }
 
 Warning: cairo_svg_surface_create() expects exactly 3 parameters, 0 given in %s on line %d

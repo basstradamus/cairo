@@ -1,5 +1,5 @@
 --TEST--
-CairoSvgVersion class constants
+Cairo\Surface\SVG\Version class constants
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -14,7 +14,7 @@ $constants = array(
 
 $error = false;
 foreach($constants as $name) {
-	$constant = 'CairoSvgVersion::' . $name;
+	$constant = 'Cairo\Surface\SVG\Version::' . $name;
 	if (!defined($constant)) {
 		$error = true;
 		echo 'Missing Constant: ' . $constant . "\n";

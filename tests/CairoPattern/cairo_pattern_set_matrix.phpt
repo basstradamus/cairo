@@ -32,16 +32,16 @@ cairo_pattern_set_matrix();
 cairo_pattern_set_matrix($pattern);
 cairo_pattern_set_matrix($pattern, $matrix, 1);
 
-// arg types are CairoSurface and CairoMatrix
+// arg types are Cairo\Surface and Cairo\Matrix
 cairo_pattern_set_matrix(1, $matrix);
 cairo_pattern_set_matrix($pattern, 1);
 
 die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 bool(true)
 bool(true)
@@ -51,9 +51,9 @@ Warning: cairo_pattern_set_matrix() expects exactly 2 parameters, 0 given in %s 
 Warning: cairo_pattern_set_matrix() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_pattern_set_matrix() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_set_matrix() must be an instance of CairoPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_set_matrix() must be an instance of Cairo\Pattern, integer given
 
-Warning: cairo_pattern_set_matrix() expects parameter 1 to be CairoPattern, integer given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_pattern_set_matrix() must be an instance of CairoMatrix, integer given
+Warning: cairo_pattern_set_matrix() expects parameter 1 to be Cairo\Pattern, integer given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_pattern_set_matrix() must be an instance of Cairo\Matrix, integer given
 
-Warning: cairo_pattern_set_matrix() expects parameter 2 to be CairoMatrix, integer given in %s on line %d
+Warning: cairo_pattern_set_matrix() expects parameter 2 to be Cairo\Matrix, integer given in %s on line %d

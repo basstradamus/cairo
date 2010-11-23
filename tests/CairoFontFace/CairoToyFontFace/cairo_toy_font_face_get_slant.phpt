@@ -3,7 +3,7 @@ cairo_toy_font_face_get_slant function
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
-if(!class_exists('CairoToyFontFace')) die('skip - CairoToyFontFace not enabled');
+if(!class_exists('Cairo\FontFace\Toy')) die('skip - Cairo\FontFace\Toy not enabled');
 ?>
 --FILE--
 <?php
@@ -28,11 +28,11 @@ var_dump(cairo_toy_font_face_get_slant("Foo"));
 --EXPECTF--
 int(0)
 int(1)
-CAUGHT ERROR: Argument 1 passed to cairo_toy_font_face_get_slant() must be an instance of CairoToyFontFace, instance of stdClass given
+CAUGHT ERROR: Argument 1 passed to cairo_toy_font_face_get_slant() must be an instance of Cairo\FontFace\Toy, instance of stdClass given
 
-Warning: cairo_toy_font_face_get_slant() expects parameter 1 to be CairoToyFontFace, object given in %s on line %d
+Warning: cairo_toy_font_face_get_slant() expects parameter 1 to be Cairo\FontFace\Toy, object given in %s on line %d
 NULL
-CAUGHT ERROR: Argument 1 passed to cairo_toy_font_face_get_slant() must be an instance of CairoToyFontFace, string given
+CAUGHT ERROR: Argument 1 passed to cairo_toy_font_face_get_slant() must be an instance of Cairo\FontFace\Toy, string given
 
-Warning: cairo_toy_font_face_get_slant() expects parameter 1 to be CairoToyFontFace, string given in %s on line %d
+Warning: cairo_toy_font_face_get_slant() expects parameter 1 to be Cairo\FontFace\Toy, string given in %s on line %d
 NULL

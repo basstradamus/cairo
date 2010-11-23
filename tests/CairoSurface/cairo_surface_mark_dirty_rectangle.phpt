@@ -33,7 +33,7 @@ cairo_surface_mark_dirty_rectangle($surface, 1, 1, array(), 1);
 cairo_surface_mark_dirty_rectangle($surface, 1, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 
 Warning: cairo_surface_mark_dirty_rectangle() expects exactly 5 parameters, 0 given in %s on line %d
@@ -47,9 +47,9 @@ Warning: cairo_surface_mark_dirty_rectangle() expects exactly 5 parameters, 3 gi
 Warning: cairo_surface_mark_dirty_rectangle() expects exactly 5 parameters, 4 given in %s on line %d
 
 Warning: cairo_surface_mark_dirty_rectangle() expects exactly 5 parameters, 6 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_surface_mark_dirty_rectangle() must be an instance of CairoSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_surface_mark_dirty_rectangle() must be an instance of Cairo\Surface, integer given
 
-Warning: cairo_surface_mark_dirty_rectangle() expects parameter 1 to be CairoSurface, integer given in %s on line %d
+Warning: cairo_surface_mark_dirty_rectangle() expects parameter 1 to be Cairo\Surface, integer given in %s on line %d
 
 Warning: cairo_surface_mark_dirty_rectangle() expects parameter 2 to be double, array given in %s on line %d
 

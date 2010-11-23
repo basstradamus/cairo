@@ -31,11 +31,11 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_pattern_get_rgba();
 cairo_pattern_get_rgba($pattern, 1);
 
-// arg types is CairoPattern
+// arg types is Cairo\Pattern
 cairo_pattern_get_rgba(1);
 ?>
 --EXPECTF--
-object(CairoSolidPattern)#%d (0) {
+object(Cairo\Pattern\Solid)#%d (0) {
 }
 array(4) {
   ["red"]=>
@@ -55,6 +55,6 @@ bool(true)
 Warning: cairo_pattern_get_rgba() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_pattern_get_rgba() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_rgba() must be an instance of CairoSolidPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_rgba() must be an instance of Cairo\Pattern\Solid, integer given
 
-Warning: cairo_pattern_get_rgba() expects parameter 1 to be CairoSolidPattern, integer given in %s on line %d
+Warning: cairo_pattern_get_rgba() expects parameter 1 to be Cairo\Pattern\Solid, integer given in %s on line %d

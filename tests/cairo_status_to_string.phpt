@@ -19,9 +19,9 @@ cairo_status_to_string(1, 1);
 cairo_status_to_string(array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 string(7) "success"
 

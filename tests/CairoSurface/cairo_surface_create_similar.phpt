@@ -31,9 +31,9 @@ cairo_surface_create_similar ($surface, 1, array(), 1);
 cairo_surface_create_similar ($surface, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 
 Warning: cairo_surface_create_similar() expects exactly 4 parameters, 0 given in %s on line %d
@@ -45,9 +45,9 @@ Warning: cairo_surface_create_similar() expects exactly 4 parameters, 2 given in
 Warning: cairo_surface_create_similar() expects exactly 4 parameters, 3 given in %s on line %d
 
 Warning: cairo_surface_create_similar() expects exactly 4 parameters, 5 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_surface_create_similar() must be an instance of CairoSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_surface_create_similar() must be an instance of Cairo\Surface, integer given
 
-Warning: cairo_surface_create_similar() expects parameter 1 to be CairoSurface, integer given in %s on line %d
+Warning: cairo_surface_create_similar() expects parameter 1 to be Cairo\Surface, integer given in %s on line %d
 
 Warning: cairo_surface_create_similar() expects parameter 2 to be long, array given in %s on line %d
 

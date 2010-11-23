@@ -30,9 +30,9 @@ cairo_pattern_status($pattern, 1);
 cairo_pattern_status(1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoSurfacePattern)#%d (0) {
+object(Cairo\Pattern\Surface)#%d (0) {
 }
 int(0)
 bool(true)
@@ -40,6 +40,6 @@ bool(true)
 Warning: cairo_pattern_status() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_pattern_status() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_status() must be an instance of CairoPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_status() must be an instance of Cairo\Pattern, integer given
 
-Warning: cairo_pattern_status() expects parameter 1 to be CairoPattern, integer given in %s on line %d
+Warning: cairo_pattern_status() expects parameter 1 to be Cairo\Pattern, integer given in %s on line %d

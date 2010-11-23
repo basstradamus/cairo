@@ -29,9 +29,9 @@ cairo_path_extents($context, 1);
 cairo_path_extents(array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 array(4) {
   [0]=>
@@ -47,6 +47,6 @@ array(4) {
 Warning: cairo_path_extents() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_path_extents() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_path_extents() must be an instance of CairoContext, array given
+CAUGHT ERROR: Argument 1 passed to cairo_path_extents() must be an instance of Cairo\Context, array given
 
-Warning: cairo_path_extents() expects parameter 1 to be CairoContext, array given in %s on line %d
+Warning: cairo_path_extents() expects parameter 1 to be Cairo\Context, array given in %s on line %d

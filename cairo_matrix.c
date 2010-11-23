@@ -547,7 +547,7 @@ PHP_MINIT_FUNCTION(cairo_matrix)
 {
 	zend_class_entry ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoMatrix", cairo_matrix_methods);
+	INIT_NS_CLASS_ENTRY(ce, "Cairo", "Matrix", cairo_matrix_methods);
 	cairo_ce_cairomatrix = zend_register_internal_class(&ce TSRMLS_CC);
 	cairo_ce_cairomatrix->create_object = cairo_matrix_object_new;
 	memcpy(&cairo_matrix_object_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));

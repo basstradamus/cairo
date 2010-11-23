@@ -19,7 +19,7 @@ cairo_matrix_init_scale(array(), 1);
 cairo_matrix_init_scale(1, array());
 ?>
 --EXPECTF--
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 
 Warning: cairo_matrix_init_scale() expects exactly 2 parameters, 0 given in %s on line %d

@@ -11,7 +11,7 @@ if(!function_exists('cairo_win32_font_face_create'))
 <?php
 $f_opts = array(
 	'lfFaceName' => 'Impact',
-	'lfWeight' => CairoWin32FontWeight::BOLD
+	'lfWeight' => Cairo\FontFace\Win32\Weight::BOLD
 );
 
 $font_face = cairo_win32_font_face_create();
@@ -28,9 +28,9 @@ var_dump($font_face);
 
 ?>
 --EXPECTF--
-object(CairoWin32FontFace)#%d (0) {
+object(Cairo\FontFace\Win32)#%d (0) {
 }
-object(CairoWin32FontFace)#%d (0) {
+object(Cairo\FontFace\Win32)#%d (0) {
 }
 
 Warning: cairo_win32_font_face_create() expects parameter 1 to be array, integer given in %s on line %d

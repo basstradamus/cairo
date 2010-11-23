@@ -1,23 +1,23 @@
 --TEST--
-CairoMatrix::initIdentity method
+Cairo\Matrix::initIdentity method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 ?>
 --FILE--
 <?php
-$matrix = CairoMatrix::initIdentity();
+$matrix = Cairo\Matrix::initIdentity();
 var_dump($matrix);
 
 /* Wrong number args */
 try {
-    CairoMatrix::initIdentity('foo');
+    Cairo\Matrix::initIdentity('foo');
     trigger_error('We should bomb here');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
-CairoMatrix::initIdentity() expects exactly 0 parameters, 1 given
+Cairo\Matrix::initIdentity() expects exactly 0 parameters, 1 given

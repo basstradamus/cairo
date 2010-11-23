@@ -25,13 +25,13 @@ cairo_image_surface_get_width($surface, 1);
 cairo_image_surface_get_width(null);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 int(50)
 
 Warning: cairo_image_surface_get_width() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_image_surface_get_width() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_image_surface_get_width() must be an instance of CairoImageSurface, null given
+CAUGHT ERROR: Argument 1 passed to cairo_image_surface_get_width() must be an instance of Cairo\Surface\Image, null given
 
-Warning: cairo_image_surface_get_width() expects parameter 1 to be CairoImageSurface, null given in %s on line %d
+Warning: cairo_image_surface_get_width() expects parameter 1 to be Cairo\Surface\Image, null given in %s on line %d

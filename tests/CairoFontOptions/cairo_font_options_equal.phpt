@@ -29,7 +29,7 @@ cairo_font_options_equal(1, $options2);
 cairo_font_options_equal($options, 1);
 ?>
 --EXPECTF--
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
 bool(true)
 
@@ -38,9 +38,9 @@ Warning: cairo_font_options_equal() expects exactly 2 parameters, 0 given in %s 
 Warning: cairo_font_options_equal() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_font_options_equal() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_font_options_equal() must be an instance of CairoFontOptions, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_font_options_equal() must be an instance of Cairo\Font\Options, integer given
 
-Warning: cairo_font_options_equal() expects parameter 1 to be CairoFontOptions, integer given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_font_options_equal() must be an instance of CairoFontOptions, integer given
+Warning: cairo_font_options_equal() expects parameter 1 to be Cairo\Font\Options, integer given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_font_options_equal() must be an instance of Cairo\Font\Options, integer given
 
-Warning: cairo_font_options_equal() expects parameter 2 to be CairoFontOptions, integer given in %s on line %d
+Warning: cairo_font_options_equal() expects parameter 2 to be Cairo\Font\Options, integer given in %s on line %d

@@ -35,18 +35,18 @@ cairo_set_matrix();
 cairo_set_matrix($context);
 cairo_set_matrix($context, $matrix, 1);
 
-// arg types are CairoContext and CairoMatrix
+// arg types are Cairo\Context and Cairo\Matrix
 cairo_set_matrix(1, $matrix);
 cairo_set_matrix($context, 1);
 
 die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoMatrix)#%d (0) {
+object(Cairo\Matrix)#%d (0) {
 }
 bool(true)
 bool(true)
@@ -56,9 +56,9 @@ Warning: cairo_set_matrix() expects exactly 2 parameters, 0 given in %s on line 
 Warning: cairo_set_matrix() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_set_matrix() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_matrix() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_set_matrix() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_set_matrix() expects parameter 1 to be CairoContext, integer given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_set_matrix() must be an instance of CairoMatrix, integer given
+Warning: cairo_set_matrix() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_set_matrix() must be an instance of Cairo\Matrix, integer given
 
-Warning: cairo_set_matrix() expects parameter 2 to be CairoMatrix, integer given in %s on line %d
+Warning: cairo_set_matrix() expects parameter 2 to be Cairo\Matrix, integer given in %s on line %d

@@ -77,15 +77,6 @@ PHP_METHOD(CairoToyFontFace, __construct)
 	long family_len, slant = CAIRO_FONT_SLANT_NORMAL, weight = CAIRO_FONT_WEIGHT_NORMAL;
 	cairo_font_face_object *fontface_object;
 
-	PHP_CAIRO_ERROR_HANDLING(TRUE);
-	if (zend_parse_parameters_none() == FAILURE)
-	{
-		PHP_CAIRO_RESTORE_ERRORS(TRUE);
-		return;
-	}
-	PHP_CAIRO_RESTORE_ERRORS(TRUE);
-
-	/*
 	PHP_CAIRO_ERROR_HANDLING(TRUE)
 	if(zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s|ll", 
 				&family, &family_len, 
@@ -99,7 +90,6 @@ PHP_METHOD(CairoToyFontFace, __construct)
 	fontface_object->font_face      = cairo_toy_font_face_create((const char *)family, slant, weight);
 	fontface_object->is_constructed = 1;
 	php_cairo_throw_exception(cairo_font_face_status(fontface_object->font_face) TSRMLS_CC);
-	*/
 }
 
 /* {{{ proto string cairo_toy_font_face_get_family(CairoToyFontFace object)
@@ -205,8 +195,8 @@ PHP_MINIT_FUNCTION(cairo_font)
 	zend_class_entry fontslant_ce;
 	zend_class_entry fontweight_ce;
 
-	INIT_CLASS_ENTRY(toyfont_ce, "CairoToyFontFace", cairo_toy_font_face_methods);
-	cairo_ce_cairotoyfontface = zend_register_internal_class_ex(&toyfont_ce, cairo_ce_cairofontface, "CairoFontFace" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(toyfont_ce, PHP_CAIRO_FONTFACE_NS, "Toy", cairo_toy_font_face_methods);
+	cairo_ce_cairotoyfontface = zend_register_internal_class_ex(&toyfont_ce, cairo_ce_cairofontface, PHP_CAIRO_FONTFACE_NS TSRMLS_CC);
 	cairo_ce_cairotoyfontface->create_object = cairo_font_object_new;
 
 	memcpy(&object_handlers, zend_get_std_object_handlers(),
@@ -215,7 +205,7 @@ PHP_MINIT_FUNCTION(cairo_font)
 
     PHP_CAIRO_CTOR_WRAPPER_FUNC_INIT(cairo_ce_cairotoyfontface);
 
-    INIT_CLASS_ENTRY(fontslant_ce, "CairoFontSlant", NULL);
+    INIT_NS_CLASS_ENTRY(fontslant_ce, PHP_CAIRO_FONT_NS, "Slant", NULL);
     cairo_ce_cairofontslant = zend_register_internal_class(&fontslant_ce TSRMLS_CC);
     cairo_ce_cairofontslant->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -227,7 +217,7 @@ PHP_MINIT_FUNCTION(cairo_font)
     REGISTER_CAIRO_FONTSLANT_LONG_CONST("ITALIC", CAIRO_FONT_SLANT_ITALIC);
     REGISTER_CAIRO_FONTSLANT_LONG_CONST("OBLIQUE", CAIRO_FONT_SLANT_OBLIQUE);
 
-    INIT_CLASS_ENTRY(fontweight_ce, "CairoFontWeight", NULL);
+    INIT_NS_CLASS_ENTRY(fontweight_ce, PHP_CAIRO_FONT_NS, "Weight", NULL);
     cairo_ce_cairofontweight = zend_register_internal_class(&fontweight_ce TSRMLS_CC);
     cairo_ce_cairofontweight->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

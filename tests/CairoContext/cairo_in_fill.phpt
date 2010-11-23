@@ -32,9 +32,9 @@ cairo_in_fill($context, array(), 1);
 cairo_in_fill($context, 1, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
 bool(false)
 
@@ -45,9 +45,9 @@ Warning: cairo_in_fill() expects exactly 3 parameters, 1 given in %s on line %d
 Warning: cairo_in_fill() expects exactly 3 parameters, 2 given in %s on line %d
 
 Warning: cairo_in_fill() expects exactly 3 parameters, 4 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_in_fill() must be an instance of CairoContext, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_in_fill() must be an instance of Cairo\Context, integer given
 
-Warning: cairo_in_fill() expects parameter 1 to be CairoContext, integer given in %s on line %d
+Warning: cairo_in_fill() expects parameter 1 to be Cairo\Context, integer given in %s on line %d
 
 Warning: cairo_in_fill() expects parameter 2 to be double, array given in %s on line %d
 

@@ -1,5 +1,5 @@
 --TEST--
-CairoFilter class constants
+Cairo\Filter class constants
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
@@ -16,7 +16,7 @@ $constants = array(
 	);
 
 foreach($constants as $name) {
-	var_dump(defined('CairoFilter::' . $name));
+	var_dump(defined('Cairo\Filter::' . $name));
 }
 ?>
 --EXPECT--

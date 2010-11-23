@@ -28,7 +28,7 @@ cairo_svg_surface_restrict_to_version(1, 1, 1);
 cairo_svg_surface_restrict_to_version($surface, array());
 ?>
 --EXPECTF--
-object(CairoSvgSurface)#%d (0) {
+object(Cairo\Surface\SVG)#%d (0) {
 }
 
 Warning: cairo_svg_surface_restrict_to_version() expects exactly 2 parameters, 0 given in %s on line %d
@@ -36,7 +36,7 @@ Warning: cairo_svg_surface_restrict_to_version() expects exactly 2 parameters, 0
 Warning: cairo_svg_surface_restrict_to_version() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_svg_surface_restrict_to_version() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_svg_surface_restrict_to_version() must be an instance of CairoSvgSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_svg_surface_restrict_to_version() must be an instance of Cairo\Surface\SVG, integer given
 
 Warning: cairo_svg_surface_restrict_to_version() expects exactly 2 parameters, 3 given in %s on line %d
 

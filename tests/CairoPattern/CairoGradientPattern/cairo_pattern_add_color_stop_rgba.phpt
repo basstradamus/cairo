@@ -27,7 +27,7 @@ cairo_pattern_add_color_stop_rgba($pattern, 1, 1, 1);
 cairo_pattern_add_color_stop_rgba($pattern, 1, 1, 1, 1);
 cairo_pattern_add_color_stop_rgba($pattern, 1, 1, 1, 1, 1, 1);
 
-// arg types are CairoPattern, double, double, double, double, double
+// arg types are Cairo\Pattern, double, double, double, double, double
 cairo_pattern_add_color_stop_rgba(1, 1, 1, 1, 1, 1);
 cairo_pattern_add_color_stop_rgba($pattern, array(), 1, 1, 1, 1);
 cairo_pattern_add_color_stop_rgba($pattern, 1, array(), 1, 1, 1);
@@ -36,7 +36,7 @@ cairo_pattern_add_color_stop_rgba($pattern, 1, 1, 1, array(), 1);
 cairo_pattern_add_color_stop_rgba($pattern, 1, 1, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoLinearGradient)#%d (0) {
+object(Cairo\Pattern\Gradient\Linear)#%d (0) {
 }
 array(4) {
   ["red"]=>
@@ -62,9 +62,9 @@ Warning: cairo_pattern_add_color_stop_rgba() expects exactly 6 parameters, 4 giv
 Warning: cairo_pattern_add_color_stop_rgba() expects exactly 6 parameters, 5 given in %s on line %d
 
 Warning: cairo_pattern_add_color_stop_rgba() expects exactly 6 parameters, 7 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_add_color_stop_rgba() must be an instance of CairoGradientPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_add_color_stop_rgba() must be an instance of Cairo\Pattern\Gradient, integer given
 
-Warning: cairo_pattern_add_color_stop_rgba() expects parameter 1 to be CairoGradientPattern, integer given in %s on line %d
+Warning: cairo_pattern_add_color_stop_rgba() expects parameter 1 to be Cairo\Pattern\Gradient, integer given in %s on line %d
 
 Warning: cairo_pattern_add_color_stop_rgba() expects parameter 2 to be double, array given in %s on line %d
 

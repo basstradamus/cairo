@@ -40,7 +40,7 @@ cairo_image_surface_create_for_data('', 1, 1, array(), 1);
 cairo_image_surface_create_for_data('', 1, 1, 1, array());
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 
 Warning: cairo_image_surface_create_for_data() expects at least 4 parameters, 0 given in %s on line %d

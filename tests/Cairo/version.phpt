@@ -13,7 +13,7 @@ var_dump($version);
 try {
     Cairo::version('foo');
     trigger_error('Cairo::version should take no arguments');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>

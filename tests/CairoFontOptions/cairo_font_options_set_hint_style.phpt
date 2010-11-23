@@ -27,7 +27,7 @@ cairo_font_options_set_hint_style(1, CAIRO_HINT_STYLE_MEDIUM);
 cairo_font_options_set_hint_style($options, array());
 ?>
 --EXPECTF--
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
 
 Warning: cairo_font_options_set_hint_style() expects exactly 2 parameters, 0 given in %s on line %d
@@ -35,8 +35,8 @@ Warning: cairo_font_options_set_hint_style() expects exactly 2 parameters, 0 giv
 Warning: cairo_font_options_set_hint_style() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_font_options_set_hint_style() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_font_options_set_hint_style() must be an instance of CairoFontOptions, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_font_options_set_hint_style() must be an instance of Cairo\Font\Options, integer given
 
-Warning: cairo_font_options_set_hint_style() expects parameter 1 to be CairoFontOptions, integer given in %s on line %d
+Warning: cairo_font_options_set_hint_style() expects parameter 1 to be Cairo\Font\Options, integer given in %s on line %d
 
 Warning: cairo_font_options_set_hint_style() expects parameter 2 to be long, array given in %s on line %d

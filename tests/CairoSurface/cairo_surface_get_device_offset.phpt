@@ -25,7 +25,7 @@ cairo_surface_get_device_offset($surface, 1);
 cairo_surface_get_device_offset(1);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
 array(2) {
   [0]=>
@@ -37,6 +37,6 @@ array(2) {
 Warning: cairo_surface_get_device_offset() expects exactly 1 parameter, 0 given in %s on line %d
 
 Warning: cairo_surface_get_device_offset() expects exactly 1 parameter, 2 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_surface_get_device_offset() must be an instance of CairoSurface, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_surface_get_device_offset() must be an instance of Cairo\Surface, integer given
 
-Warning: cairo_surface_get_device_offset() expects parameter 1 to be CairoSurface, integer given in %s on line %d
+Warning: cairo_surface_get_device_offset() expects parameter 1 to be Cairo\Surface, integer given in %s on line %d

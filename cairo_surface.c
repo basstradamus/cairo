@@ -63,7 +63,7 @@ ZEND_END_ARG_INFO()
    CairoSurface CANNOT be extended in userspace, this will throw an exception on use */
 PHP_METHOD(CairoSurface, __construct)
 {
-	zend_throw_exception(cairo_ce_cairoexception, "CairoSurface cannot be constructed", 0 TSRMLS_CC);
+	zend_throw_exception(cairo_ce_cairoexception, "Cairo\\Surface cannot be constructed", 0 TSRMLS_CC);
 }
 /* }}} */
 
@@ -461,7 +461,7 @@ PHP_FUNCTION(cairo_surface_write_to_png)
 		php_stream_from_zval(stream, &stream_zval);	
 	} else {
 		if(getThis()) {
-			zend_throw_exception(cairo_ce_cairoexception, "CairoSurface::writeToPng() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
+			zend_throw_exception(cairo_ce_cairoexception, "Cairo\\Surface::writeToPng() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
 			return;
 		} else {
 			zend_error(E_WARNING, "cairo_surface_write_to_png() expects parameter 1 to be a string or a stream resource");
@@ -670,12 +670,12 @@ PHP_MINIT_FUNCTION(cairo_surface)
 {
 	zend_class_entry ce, content_ce, type_ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoSurface", cairo_surface_methods);
+	INIT_NS_CLASS_ENTRY(ce, "Cairo", "Surface", cairo_surface_methods);
 	cairo_ce_cairosurface = zend_register_internal_class(&ce TSRMLS_CC);
 	cairo_ce_cairosurface->create_object = cairo_surface_object_new;
 	cairo_ce_cairosurface->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS;
 
-	INIT_CLASS_ENTRY(content_ce, "CairoContent", NULL);
+	INIT_NS_CLASS_ENTRY(content_ce, "Cairo", "Content", NULL);
 	cairo_ce_cairocontent = zend_register_internal_class(&content_ce TSRMLS_CC);
 	cairo_ce_cairocontent->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 
@@ -687,7 +687,7 @@ PHP_MINIT_FUNCTION(cairo_surface)
 	REGISTER_CAIRO_CONTENT_LONG_CONST("ALPHA", CAIRO_CONTENT_ALPHA);
 	REGISTER_CAIRO_CONTENT_LONG_CONST("COLOR_ALPHA", CAIRO_CONTENT_COLOR_ALPHA);
 
-	INIT_CLASS_ENTRY(type_ce, "CairoSurfaceType", NULL);
+	INIT_NS_CLASS_ENTRY(type_ce, "Cairo", "SurfaceType", NULL);
 	cairo_ce_cairosurfacetype = zend_register_internal_class(&type_ce TSRMLS_CC);
 	cairo_ce_cairosurfacetype->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

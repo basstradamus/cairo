@@ -233,7 +233,7 @@ PHP_METHOD(CairoFtFontFace, __construct)
 	} else {	
 		PHP_CAIRO_RESTORE_ERRORS(TRUE)
 
-		zend_throw_exception(cairo_ce_cairoexception, "CairoFtFontFace::__construct() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
+		zend_throw_exception(cairo_ce_cairoexception, "Cairo\\FontFace\\FreeType::__construct() expects parameter 1 to be a string or a stream resource", 0 TSRMLS_CC);
 		return;
 	}
 	PHP_CAIRO_RESTORE_ERRORS(TRUE)
@@ -273,14 +273,14 @@ PHP_METHOD(CairoFtFontFace, __construct)
 			php_stream_close(stream);
 		}	
 
-		zend_throw_exception(cairo_ce_cairoexception, "CairoFtFontFace::__construct(): unknown file format", 0 TSRMLS_CC);
+		zend_throw_exception(cairo_ce_cairoexception, "Cairo\\FontFace\\FreeType::__construct(): unknown file format", 0 TSRMLS_CC);
 		return;
 	} else if (error) {
 		if(owned_stream) {
 			php_stream_close(stream);
 		}	
 
-		zend_throw_exception(cairo_ce_cairoexception, "CairoFtFontFace::__construct(): An error occurred opening the file", 0 TSRMLS_CC);
+		zend_throw_exception(cairo_ce_cairoexception, "Cairo\\FontFace\\FreeType::__construct(): An error occurred opening the file", 0 TSRMLS_CC);
 		return;
 	} 
 
@@ -358,8 +358,8 @@ PHP_MINIT_FUNCTION(cairo_ft_font)
 {
 	zend_class_entry ftfont_ce;
 
-	INIT_CLASS_ENTRY(ftfont_ce, "CairoFtFontFace", cairo_ft_font_methods);
-	cairo_ce_cairoftfont = zend_register_internal_class_ex(&ftfont_ce, cairo_ce_cairofontface, "CairoFontFace" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(ftfont_ce, PHP_CAIRO_FONTFACE_NS, "FreeType", cairo_ft_font_methods);
+	cairo_ce_cairoftfont = zend_register_internal_class_ex(&ftfont_ce, cairo_ce_cairofontface, PHP_CAIRO_FONTFACE_NS TSRMLS_CC);
 	cairo_ce_cairoftfont->create_object = cairo_ft_font_face_object_new;
 
 	return SUCCESS;

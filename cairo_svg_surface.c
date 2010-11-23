@@ -79,7 +79,7 @@ PHP_METHOD(CairoSvgSurface, __construct)
 		} else if(Z_TYPE_P(stream_zval) == IS_RESOURCE)  {
 			php_stream_from_zval(stream, &stream_zval);	
 		} else {
-			zend_throw_exception(cairo_ce_cairoexception, "CairoSvgSurface::__construct() expects parameter 1 to be null, a string, or a stream resource", 0 TSRMLS_CC);
+			zend_throw_exception(cairo_ce_cairoexception, "Cairo\\Surface\\SVG::__construct() expects parameter 1 to be null, a string, or a stream resource", 0 TSRMLS_CC);
 			return;
 		}
 
@@ -262,11 +262,11 @@ PHP_MINIT_FUNCTION(cairo_svg_surface)
 {
 	zend_class_entry ce, version_ce;
 
-	INIT_CLASS_ENTRY(ce, "CairoSvgSurface", cairo_svg_surface_methods);
-	cairo_ce_cairosvgsurface = zend_register_internal_class_ex(&ce, cairo_ce_cairosurface, "CairoSurface" TSRMLS_CC);
+	INIT_NS_CLASS_ENTRY(ce, PHP_CAIRO_SURFACE_NS, "SVG", cairo_svg_surface_methods);
+	cairo_ce_cairosvgsurface = zend_register_internal_class_ex(&ce, cairo_ce_cairosurface, PHP_CAIRO_SURFACE_NS TSRMLS_CC);
 	cairo_ce_cairosvgsurface->create_object = cairo_surface_object_new;
 
-	INIT_CLASS_ENTRY(version_ce, "CairoSvgVersion", NULL);
+	INIT_NS_CLASS_ENTRY(version_ce, PHP_CAIRO_SURFACE_NS, ZEND_NS_NAME("SVG", "Version"), NULL);
 	cairo_ce_cairosvgversion = zend_register_internal_class(&version_ce TSRMLS_CC);
 	cairo_ce_cairosvgversion->ce_flags |= ZEND_ACC_EXPLICIT_ABSTRACT_CLASS | ZEND_ACC_FINAL_CLASS;
 

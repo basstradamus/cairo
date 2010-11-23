@@ -45,11 +45,11 @@ cairo_set_font_face($context, array());
 die; // DO NOT REMOVE THIS - fixes issue in 5.3 with GC giving bogus memleak reports
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoContext)#%d (0) {
+object(Cairo\Context)#%d (0) {
 }
-object(CairoToyFontFace)#%d (0) {
+object(Cairo\FontFace\Toy)#%d (0) {
 }
 bool(true)
 bool(true)
@@ -59,9 +59,9 @@ Warning: cairo_set_font_face() expects exactly 2 parameters, 0 given in %s on li
 Warning: cairo_set_font_face() expects exactly 2 parameters, 1 given in %s on line %d
 
 Warning: cairo_set_font_face() expects exactly 2 parameters, 3 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_set_font_face() must be an instance of CairoContext, array given
+CAUGHT ERROR: Argument 1 passed to cairo_set_font_face() must be an instance of Cairo\Context, array given
 
-Warning: cairo_set_font_face() expects parameter 1 to be CairoContext, array given in %s on line %d
-CAUGHT ERROR: Argument 2 passed to cairo_set_font_face() must be an instance of CairoFontFace, array given
+Warning: cairo_set_font_face() expects parameter 1 to be Cairo\Context, array given in %s on line %d
+CAUGHT ERROR: Argument 2 passed to cairo_set_font_face() must be an instance of Cairo\FontFace, array given
 
-Warning: cairo_set_font_face() expects parameter 2 to be CairoFontFace, array given in %s on line %d
+Warning: cairo_set_font_face() expects parameter 2 to be Cairo\FontFace, array given in %s on line %d

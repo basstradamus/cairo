@@ -24,18 +24,18 @@ set_error_handler('bad_class', E_RECOVERABLE_ERROR);
 cairo_pattern_get_type();
 cairo_pattern_get_type($pattern);
 
-// arg type is CairoSurface
+// arg type is Cairo\Surface
 cairo_pattern_get_type(1);
 cairo_pattern_get_type($pattern);
 ?>
 --EXPECTF--
-object(CairoImageSurface)#%d (0) {
+object(Cairo\Surface\Image)#%d (0) {
 }
-object(CairoSurfacePattern)#%d (0) {
+object(Cairo\Pattern\Surface)#%d (0) {
 }
 int(1)
 
 Warning: cairo_pattern_get_type() expects exactly 1 parameter, 0 given in %s on line %d
-CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_type() must be an instance of CairoPattern, integer given
+CAUGHT ERROR: Argument 1 passed to cairo_pattern_get_type() must be an instance of Cairo\Pattern, integer given
 
-Warning: cairo_pattern_get_type() expects parameter 1 to be CairoPattern, integer given in %s on line %d
+Warning: cairo_pattern_get_type() expects parameter 1 to be Cairo\Pattern, integer given in %s on line %d

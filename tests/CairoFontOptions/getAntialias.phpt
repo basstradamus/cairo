@@ -1,12 +1,12 @@
 --TEST--
-CairoFontOptions->getAntialias() method
+Cairo\Font\Options->getAntialias() method
 --SKIPIF--
 <?php
 if(!extension_loaded('cairo')) die('skip - Cairo extension not available');
 ?>
 --FILE--
 <?php
-$options = new CairoFontOptions();
+$options = new Cairo\Font\Options();
 var_dump($options);
 
 var_dump($options->getAntialias());
@@ -15,12 +15,12 @@ var_dump($options->getAntialias());
 try {
     $options->getAntialias('foo');
     trigger_error('getAntialias requires no args');
-} catch (CairoException $e) {
+} catch (Cairo\Exception $e) {
     echo $e->getMessage(), PHP_EOL;
 }
 ?>
 --EXPECTF--
-object(CairoFontOptions)#%d (0) {
+object(Cairo\Font\Options)#%d (0) {
 }
 int(0)
-CairoFontOptions::getAntialias() expects exactly 0 parameters, 1 given
+Cairo\Font\Options::getAntialias() expects exactly 0 parameters, 1 given
