@@ -470,6 +470,7 @@ PHP_FUNCTION(cairo_font_face_get_type);
 #endif
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	PHP_FUNCTION(cairo_ft_font_face_create);
+	PHP_FUNCTION(cairo_ft_font_face_add_file);
 #endif
 #if defined(CAIRO_HAS_WIN32_FONT) && defined(HAVE_WIN32_FONT)
 	PHP_FUNCTION(cairo_win32_font_face_create);

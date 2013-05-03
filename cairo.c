@@ -1062,6 +1062,7 @@ static const zend_function_entry cairo_functions[] = {
 
 #if defined(CAIRO_HAS_FT_FONT) && defined(HAVE_FREETYPE)
 	PHP_FE(cairo_ft_font_face_create, NULL)
+	PHP_FE(cairo_ft_font_face_add_file, NULL)
 #endif
 #if defined(CAIRO_HAS_WIN32_FONT) && defined(HAVE_WIN32_FONT)
 	PHP_FE(cairo_win32_font_face_create, NULL)

@@ -286,9 +286,30 @@ PHP_METHOD(CairoFtFontFace, __construct)
 
 /* }}} */
 
+/* {{{ proto CairoFtFontFace::__construct(string fontFilename, long load_flags)
+	   Creates a new font face for the FreeType font backend from a pre-opened FreeType face. */
+
+/* FIXME: Adapt this to use streams, to handle open_basedir etc */
+PHP_FUNCTION(cairo_ft_font_face_add_file)
+{
+	FcBool ret;
+	char *font_path;
+	int font_path_len;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &font_path, &font_path_len) == FAILURE) {
+		RETURN_FALSE;
+	}
+
+	ret = FcConfigAppFontAddFile(NULL, font_path);
+	RETURN_BOOL(ret);
+}
+
+/* }}} */
+
 /* {{{ cairo_ft_font_methods */
 const zend_function_entry cairo_ft_font_methods[] = {
 	PHP_ME(CairoFtFontFace, __construct, CairoFtFontFace_construct_args, ZEND_ACC_PUBLIC|ZEND_ACC_CTOR)
+	PHP_ME_MAPPING(addFile, cairo_ft_font_face_add_file, NULL, ZEND_ACC_PUBLIC|ZEND_ACC_STATIC)
 	{NULL, NULL, NULL}
 };
 /* }}} */
@@ -350,6 +371,8 @@ zend_object_value cairo_ft_font_face_object_new(zend_class_entry *ce TSRMLS_DC)
 PHP_MINIT_FUNCTION(cairo_ft_font)
 {
 	zend_class_entry ftfont_ce;
+	FcConfig *config;
+	FcBool ret;
 
 	INIT_CLASS_ENTRY(ftfont_ce, "CairoFtFontFace", cairo_ft_font_methods);
 	cairo_ce_cairoftfont = zend_register_internal_class_ex(&ftfont_ce, cairo_ce_cairofontface, "CairoFontFace" TSRMLS_CC);
