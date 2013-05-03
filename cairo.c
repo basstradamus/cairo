@@ -628,6 +628,25 @@ const char* php_cairo_get_ft_error(int error TSRMLS_DC) {
 
 #endif	
 
+int php_cairo_open_basedir_check(const char *filename TSRMLS_DC) {
+	const char *error_message;
+	int status;
+
+#if PHP_VERSION_ID < 50399
+	if (PG(safe_mode) && (!php_checkuid_ex(filename, NULL, CHECKUID_CHECK_FILE_AND_DIR, CHECKUID_NO_ERRORS))) {
+		zend_error(E_WARNING, "Could not access file %s due to safe mode restrictions", filename);
+		return FALSE;
+	}
+#endif
+
+	if (PG(open_basedir) && php_check_open_basedir_ex(filename, 0 TSRMLS_CC)) {
+		zend_error(E_WARNING, "Could not access file %s due to open_basedir restrictions", filename);
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 /* {{{ proto int cairo_version(void) 
        Returns an integer version number of the cairo library being used */
 PHP_FUNCTION(cairo_version)

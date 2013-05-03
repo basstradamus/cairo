@@ -596,6 +596,8 @@ PHP_CAIRO_API extern cairo_t * php_cairo_context_reference(cairo_t *context);
 		php_cairo_throw_exception(status TSRMLS_CC); \
 	}
 
+extern php_cairo_open_basedir_check(const char *filename TSRMLS_DC);
+
 /* a bunch of inline functions to deal with checking for the proper internal object, makes extending classes work */
 static inline cairo_context_object* cairo_context_object_get(zval *zobj TSRMLS_DC)
 {

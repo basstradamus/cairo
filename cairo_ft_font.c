@@ -154,14 +154,14 @@ PHP_FUNCTION(cairo_ft_font_face_create)
 	php_stream_statbuf ssbuf;
 	zend_bool owned_stream = 0;
 
-	PHP_CAIRO_ERROR_HANDLING(FALSE)
+	PHP_CAIRO_ERROR_HANDLING(TRUE)
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "z|l",
 				&stream_zval, &load_flags) == FAILURE)
 	{
-		PHP_CAIRO_RESTORE_ERRORS(FALSE)
+		PHP_CAIRO_RESTORE_ERRORS(TRUE)
 		return;
 	}
-	PHP_CAIRO_RESTORE_ERRORS(FALSE)
+	PHP_CAIRO_RESTORE_ERRORS(TRUE)
 	
 	ft_lib = &CAIROG(ft_lib);
 	if(*ft_lib == NULL) {
@@ -296,9 +296,17 @@ PHP_FUNCTION(cairo_ft_font_face_add_file)
 	char *font_path;
 	int font_path_len;
 
+	PHP_CAIRO_ERROR_HANDLING(FALSE)
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &font_path, &font_path_len) == FAILURE) {
-		RETURN_FALSE;
+		PHP_CAIRO_RESTORE_ERRORS(FALSE)
+		return;
 	}
+
+	if (php_cairo_open_basedir_check(font_path) == FALSE) {
+		PHP_CAIRO_RESTORE_ERRORS(FALSE)
+		return;
+	}
+	PHP_CAIRO_RESTORE_ERRORS(FALSE)
 
 	ret = FcConfigAppFontAddFile(NULL, font_path);
 	RETURN_BOOL(ret);
